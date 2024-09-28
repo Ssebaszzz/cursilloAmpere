@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="782.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_facturaController">
+   <children>
+      <Label layoutX="42.0" layoutY="36.0" prefHeight="37.0" prefWidth="226.0" text="Detalle_factura">
+         <font>
+            <Font name="Berlin Sans FB" size="33.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablaFactura" layoutX="282.0" layoutY="85.0" onMouseClicked="#mostrarFila" prefHeight="168.0" prefWidth="481.0">
+        <columns>
+          <TableColumn fx:id="colGrupo" prefWidth="63.0" text="Grupo" />
+          <TableColumn fx:id="colAlumno" prefWidth="149.0" text="Alumno" />
+            <TableColumn fx:id="colFactura" prefWidth="76.0" text="Nro Factura" />
+            <TableColumn fx:id="colMonto" prefWidth="93.0" text="Monto" />
+            <TableColumn fx:id="colCuota" prefWidth="113.0" text="Cuota" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtBuscar" layoutX="279.0" layoutY="42.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="481.0" promptText="🔍" />
+      <Pane layoutX="100.0" layoutY="269.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
+         <children>
+            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
+            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
+            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
+            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="cmbFactura" disable="true" layoutX="42.0" layoutY="101.0" prefHeight="25.0" prefWidth="189.0" promptText="Numero de factura" />
+      <ComboBox fx:id="cmbCurso" disable="true" layoutX="42.0" layoutY="132.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione Curso" />
+      <TextField fx:id="txtPago" disable="true" layoutX="42.0" layoutY="169.0" prefHeight="37.0" prefWidth="189.0" promptText="Monto del pago" />
+      <TextField fx:id="txtCuota" disable="true" layoutX="42.0" layoutY="212.0" prefHeight="37.0" prefWidth="189.0" promptText="Numero de cuota" />
+   </children>
+</AnchorPane>

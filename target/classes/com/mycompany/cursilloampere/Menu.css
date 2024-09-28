@@ -1,0 +1,221 @@
+
+.btnMenu{
+ -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+
+}
+.btnProfes{
+-fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnCurso{
+-fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnAula{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnGrupo{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnNotas{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnPago{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.txtFieldCedula{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldId{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldMatricula{
+     -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldCuotas{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldCosto{
+     -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldDuracion{
+     -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFiedlNombre{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldNombre:hover {
+    -fx-border-color: blue; /* Color del borde al pasar el mouse */
+    -fx-border-width: 2px; /* Asegúrate de que el borde tenga un ancho definido */
+}
+.textFiedlApellido{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey;
+}
+.txtFieldTelefono{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey
+}
+.txtFieldCorreo{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey
+}
+.txtFieldTelPadres{
+     -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey
+}
+.txtFieldRuc{
+    -fx-background-color:transparent;
+    -fx-border-width:0px 0px 2px 0px;
+    -fx-border-color:grey
+}
+.tableView {
+    -fx-background-color: grey; /* Color de fondo de la tabla */
+    
+    
+}
+
+/* Estilo para las cabeceras de columna */
+
+
+/* Estilo para las celdas de la tabla */
+.tableCell {
+    -fx-background-color: #f0ebea; /* Color de fondo de las celdas */
+    -fx-text-fill: black; /* Color del texto de las celdas */
+    -fx-font-size: 11px; /* Tamaño de la tipografía de las celdas */
+    -fx-background-color: #c1bfbe; /* Color de fondo de la cabecera */
+    -fx-text-fill: black; /* Color del texto de la cabecera */
+    -fx-font-size: 14px; /* Tamaño de la tipografía de la cabecera */
+    -fx-font-weight: bold; 
+}
+
+/* Estilo para las celdas cuando el ratón pasa sobre ellas */
+.tableCell:hover {
+    -fx-background-color: grey; /* Color de fondo al pasar el ratón */
+}
+
+
+.btnNuevo{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnModificar{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnEliminar{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnGuardar{
+    -fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnCancelar{
+-fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnAsignarCusro{
+-fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.btnFactura{
+-fx-background-color: #551f16;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-border-style: solid; 
+-fx-border-color:#551f16;
+-fx-text-fill: white;
+}
+.sidePane{
+    -fx-background-color: #73392a;
+}

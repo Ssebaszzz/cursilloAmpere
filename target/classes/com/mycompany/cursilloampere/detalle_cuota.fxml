@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="751.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_cuotaController">
+   <children>
+      <Label layoutX="42.0" layoutY="36.0" prefHeight="37.0" prefWidth="226.0" text="Cuotas">
+         <font>
+            <Font name="Berlin Sans FB" size="33.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablaCuota" layoutX="278.0" layoutY="89.0" onMouseClicked="#mostrarFila" prefHeight="226.0" prefWidth="455.0">
+        <columns>
+          <TableColumn fx:id="colGrupo" prefWidth="139.0" text="Grupo" />
+          <TableColumn fx:id="colAlumno" prefWidth="195.0" text="Alumno" />
+            <TableColumn fx:id="colCuota" prefWidth="120.0" text="Cantidad de cuotas" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtBuscar" layoutX="279.0" layoutY="42.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="455.0" promptText="🔍" />
+      <Pane layoutX="85.0" layoutY="326.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
+         <children>
+            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
+            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
+            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
+            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="cmbCurso" disable="true" layoutX="42.0" layoutY="147.0" prefHeight="37.0" prefWidth="189.0" promptText="Seleccione Curso" />
+      <TextField fx:id="txtCuota" disable="true" layoutX="42.0" layoutY="202.0" prefHeight="37.0" prefWidth="189.0" promptText="Cantidad de cuotas" />
+      <TextField fx:id="txtAlumno" disable="true" layoutX="42.0" layoutY="89.0" onKeyReleased="#Alumno" prefHeight="37.0" prefWidth="189.0" promptText="Nombre Alumno" />
+   </children>
+</AnchorPane>

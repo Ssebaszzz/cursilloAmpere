@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="905.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.DetallePagoProfesorController">
+   <children>
+      <Label layoutX="385.0" layoutY="30.0" prefHeight="37.0" prefWidth="88.0" text="Pagos">
+         <font>
+            <Font name="Berlin Sans FB" size="33.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablaPagos" layoutX="33.0" layoutY="186.0" onMouseClicked="#mostrarFila" prefHeight="231.0" prefWidth="859.0">
+        <columns>
+          <TableColumn fx:id="colPagoHora" prefWidth="92.0" text="Pago por hora" />
+          <TableColumn fx:id="colPagoTotal" prefWidth="88.0" text="Pago total" />
+            <TableColumn fx:id="colGrupo" prefWidth="118.0" text="Curso" />
+            <TableColumn fx:id="colMateria" prefWidth="102.0" text="Materia" />
+            <TableColumn fx:id="colProfesor" prefWidth="143.0" text="Profesor" />
+            <TableColumn fx:id="colFecha" prefWidth="130.0" text="Fecha de clase" />
+            <TableColumn fx:id="colFechaPago" prefWidth="185.0" text="Fecha de pago" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtBuscar" layoutX="32.0" layoutY="143.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="859.0" promptText="🔍" />
+      <Pane layoutX="139.0" layoutY="434.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
+         <children>
+            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
+            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
+            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
+            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="cmbClase" disable="true" layoutX="33.0" layoutY="91.0" prefHeight="38.0" prefWidth="413.0" promptText="Seleccione Clase a Pagar" />
+      <TextField fx:id="txtPagoHora" disable="true" layoutX="453.0" layoutY="91.0" onAction="#calcularPagos" prefHeight="38.0" prefWidth="142.0" promptText="Pago por Hora" />
+      <DatePicker fx:id="txtFecha" disable="true" layoutX="703.0" layoutY="92.0" onKeyReleased="#calcularPagos" prefHeight="37.0" prefWidth="189.0" promptText="Seleccione la fecha" />
+      <TextField fx:id="txtPagoTotal" disable="true" layoutX="603.0" layoutY="91.0" prefHeight="38.0" prefWidth="88.0" promptText="Pago total" />
+   </children>
+</AnchorPane>

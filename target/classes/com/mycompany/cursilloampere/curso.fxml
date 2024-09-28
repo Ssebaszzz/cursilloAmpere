@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.CursoController">
+   <children>
+      <BorderPane layoutX="260.0" layoutY="150.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="501.0" prefWidth="180.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="30.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="53.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMPERE">
+                     <font>
+                        <Font name="Space Ranger" size="18.0" />
+                     </font>
+                  </Text>
+                  <VBox layoutX="50.0" layoutY="176.0" prefHeight="325.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0">
+                     <children>
+                        <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#abrirMenu" onMouseClicked="#abrirMenu" prefHeight="29.0" prefWidth="209.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Menu" />
+                        <Button fx:id="btnAlumno" mnemonicParsing="false" onAction="#abrirAlumno" onMouseClicked="#abrirAlumno" prefHeight="29.0" prefWidth="212.0" styleClass="btnAula" stylesheets="@Menu.css" text="Alumno" />
+                        <Button fx:id="btnAula" mnemonicParsing="false" onAction="#abrirAula" onMouseClicked="#abrirAula" prefHeight="29.0" prefWidth="208.0" styleClass="btnAula" stylesheets="@Menu.css" text="Aula" />
+                        <Button fx:id="btnMateria" mnemonicParsing="false" onAction="#abrirMateria" onMouseClicked="#abrirMateria" prefHeight="29.0" prefWidth="205.0" styleClass="btnCurso" stylesheets="@Menu.css" text="Materia" />
+                        <Button fx:id="btnNotas" mnemonicParsing="false" onAction="#abrirNotas" onMouseClicked="#abrirNotas" prefHeight="29.0" prefWidth="210.0" styleClass="btnCurso" stylesheets="@Menu.css" text="Notas" />
+                        <Button fx:id="btnPago" mnemonicParsing="false" onAction="#abrirPago" onMouseClicked="#abrirPago" prefHeight="29.0" prefWidth="203.0" styleClass="btnPago" text="Pago" />
+                        <Button fx:id="btnFactura" mnemonicParsing="false" onAction="#abrirrFactura" onMouseClicked="#abrirrFactura" prefHeight="29.0" prefWidth="210.0" styleClass="btnNotas" stylesheets="@Menu.css" text="Factura" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tablaCurso" layoutX="170.0" layoutY="57.0" onMouseClicked="#mostrarFila" prefHeight="200.0" prefWidth="200.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="40.0">
+                    <columns>
+                      <TableColumn fx:id="colId" prefWidth="75.0" styleClass="tableCell" text="Id" />
+                      <TableColumn fx:id="colNom" prefWidth="126.0" styleClass="tableCell" text="Nombre" />
+                        <TableColumn fx:id="colMatricula" prefWidth="106.0" styleClass="tableCell" text="Matricula" />
+                        <TableColumn fx:id="colCosto" prefWidth="83.0" styleClass="tableCell" text="Costo" />
+                        <TableColumn fx:id="colDuracion" prefWidth="144.0" styleClass="tableCell" text="Duracion" />
+                        <TableColumn fx:id="colAula" prefWidth="82.0" styleClass="tableCell" text="Aula" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="txtBuscar" layoutX="218.0" layoutY="15.0" promptText="Buscar" AnchorPane.bottomAnchor="467.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="8.0" />
+                  <TextField fx:id="txtNombre" disable="true" layoutX="14.0" layoutY="268.0" prefHeight="25.0" prefWidth="104.0" promptText="Nombre" styleClass="txtFiedlNombre" stylesheets="@Menu.css" />
+                  <TextField fx:id="txtId" disable="true" layoutX="130.0" layoutY="268.0" prefHeight="25.0" prefWidth="29.0" promptText="Id" styleClass="txtFieldId" stylesheets="@Menu.css" />
+                  <TextField fx:id="txtMatricula" disable="true" layoutX="173.0" layoutY="268.0" prefHeight="25.0" prefWidth="106.0" promptText="Matricula" styleClass="txtFieldMatricula" stylesheets="@Menu.css" />
+                  <TextField fx:id="txtCosto" disable="true" layoutX="294.0" layoutY="268.0" prefHeight="25.0" prefWidth="131.0" promptText="Costo" styleClass="txtFieldCosto" stylesheets="@Menu.css" />
+                  <ComboBox fx:id="cmbAula" disable="true" layoutX="14.0" layoutY="313.0" prefHeight="25.0" prefWidth="148.0" promptText="Aula" />
+                  <HBox layoutX="2.0" layoutY="379.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="2.0">
+                     <children>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="80.0" styleClass="btnNuevo" stylesheets="@Menu.css" text="Nuevo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="40.0" prefWidth="85.0" styleClass="btnModificar" stylesheets="@Menu.css" text="Modificar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="80.0" styleClass="btnEliminar" stylesheets="@Menu.css" text="Eliminar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="80.0" styleClass="btnGuardar" stylesheets="@Menu.css" text="Guardar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="80.0" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="txtDuracion" disable="true" layoutX="444.0" layoutY="268.0" prefHeight="25.0" prefWidth="131.0" promptText="Duracion en meses" styleClass="txtFieldDuracion" stylesheets="@Menu.css" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
