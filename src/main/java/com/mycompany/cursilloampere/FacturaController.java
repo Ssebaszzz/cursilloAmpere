@@ -40,6 +40,7 @@ import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
@@ -58,7 +59,7 @@ import javafx.stage.Stage;
  * @author sebas
  */
 public class FacturaController implements Initializable {
-    
+
     @FXML
     private TextField txtId;
     @FXML
@@ -71,7 +72,6 @@ public class FacturaController implements Initializable {
     private TableColumn<Factura, String> colConcepto;
     @FXML
     private TableColumn<Factura, Integer> colRuc;
-    private TextField txtBuscar;
     @FXML
     private Button btnNuevo;
     @FXML
@@ -89,30 +89,42 @@ public class FacturaController implements Initializable {
     ObservableList<Curso> listaCurso;
     ObservableList<Alumno> listaAlumno;
     ObservableList<detalle_cuota> listaDetalleCuota;
+    ObservableList<String> alumnoNombres = FXCollections.observableArrayList();
+    detalle_cuota dc = new detalle_cuota();
     Alumno a = new Alumno();
     Curso c = new Curso();
-    detalle_cuota dc = new detalle_cuota();
     Factura f = new Factura();
     detalle_factura df = new detalle_factura();
+    private final ContextMenu contextMenu = new ContextMenu();
     boolean bandera = false;
-    private FXMLLoader loader;
     @FXML
     private TableColumn<Factura, String> colAlumno;
-    private TextField txtMonto;
-    private TextField txtCuota;
-    private ComboBox<String> cmbCurso;
     @FXML
     private TextField txtAlumno;
-    private final ContextMenu contextMenu = new ContextMenu();
-    ObservableList<String> alumnoNombres = FXCollections.observableArrayList();
-    String CuotaTotal;
-    private ComboBox<String> cmbConcepto;
-    private TextField txtNRuc;
-    @FXML
-    private Button btnMenu;
     @FXML
     private Button btnAgregar;
-    private AgregarFacturaController af = new AgregarFacturaController();
+    @FXML
+    private TableView<detalle_factura> tablaFactura2;
+    @FXML
+    private TableColumn<detalle_factura, Integer> colNroCuotas;
+    @FXML
+    private TableColumn<detalle_factura, Double> colTotal;
+    @FXML
+    private TableColumn<detalle_factura, String> colGrupo;
+    @FXML
+    private Button btnNuevo2;
+    @FXML
+    private Button btnEliminar2;
+    @FXML
+    private CheckBox chkmatricula;
+    @FXML
+    private TextField txtPago;
+    @FXML
+    private Button btnCancelar2;
+    @FXML
+    private ComboBox<String> cmbCurso;
+    @FXML
+    private TextField txtCuota;
 
     /**
      * Initializes the controller class.
@@ -121,14 +133,9 @@ public class FacturaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         mostrarDatos();
         cargarNombresAlumnos();
-        txtAlumno.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.isEmpty()) { // Asegúrate de cargar conceptos cada vez que cambie el alumno
-            } else {
-                cmbConcepto.getItems().clear(); // Limpia los conceptos si no hay alumno
-            }
-        });
+        listaDetalleFactura = FXCollections.observableArrayList();
     }
-    
+
     public void mostrarDatos() {
         listaFactura = FXCollections.observableArrayList();
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -138,7 +145,14 @@ public class FacturaController implements Initializable {
         colFecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
         tablaFactura.setItems(listaFactura);
     }
-    
+
+    public void mostrarDatos2() {
+        colGrupo.setCellValueFactory(new PropertyValueFactory<>("nombreCurso"));
+        colNroCuotas.setCellValueFactory(new PropertyValueFactory<>("Nro_cuota"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Pago"));
+        tablaFactura2.setItems(listaDetalleFactura);
+    }
+
     @FXML
     private void mostrarFila(MouseEvent event) {
         Factura f = tablaFactura.getSelectionModel().getSelectedItem();
@@ -151,25 +165,21 @@ public class FacturaController implements Initializable {
         btnCancelar.setDisable(false);
         btnNuevo.setDisable(true);
         listaDetalleFactura = FXCollections.observableArrayList(df.consulta());
-        
+
     }
-    
-    private void buscar(KeyEvent event) {
-        ObservableList<Factura> registrosFiltrados = FXCollections.observableArrayList();
-        String buscar = txtBuscar.getText();
-        if (buscar.isEmpty()) {
-            tablaFactura.setItems(listaFactura);
-        } else {
-            registrosFiltrados.clear();
-            for (Factura registro : listaFactura) {
-                if (registro.getConcepto().toLowerCase().contains(buscar.toLowerCase()) || registro.getFecha().toLowerCase().contains(buscar.toLowerCase()) || String.valueOf(registro.getRuc()).toLowerCase().contains(buscar.toLowerCase())) {
-                    registrosFiltrados.add(registro);
-                } // fin if
-            } // fin for
-            tablaFactura.setItems(registrosFiltrados);
+
+    private void mostrarFila2(MouseEvent event) {
+        detalle_factura df = tablaFactura2.getSelectionModel().getSelectedItem();
+        if (df != null) {
+            txtCuota.setText(String.valueOf(df.getNro_cuota()));
+            txtPago.setText(String.valueOf(df.getPago()));
+            btnEliminar.setDisable(false);
+            btnCancelar.setDisable(false);
+            cargarCurso();
+            cmbCurso.setValue(df.getNombreCurso());
         }
     }
-    
+
     @FXML
     private void nuevo(ActionEvent event) {
         txtAlumno.setDisable(false);
@@ -181,7 +191,19 @@ public class FacturaController implements Initializable {
         btnNuevo.setDisable(true);
         btnAgregar.setDisable(false);
     }
-    
+    @FXML
+    private void Agregar(ActionEvent event) {
+        btnNuevo2.setDisable(false);
+        cmbCurso.setDisable(false);
+        chkmatricula.setDisable(false);
+        txtPago.setDisable(false);
+        txtCuota.setDisable(false);
+        btnCancelar.setDisable(false);
+        btnAgregar.setDisable(false);
+        cargarCurso();
+        cmbCurso.setPromptText("Seleccione Curso");
+    }
+
     @FXML
     private void modificar(ActionEvent event) {
         txtFecha.setDisable(false);
@@ -192,23 +214,14 @@ public class FacturaController implements Initializable {
         btnNuevo.setDisable(true);
         bandera = true;
     }
-    
-    @FXML
-    private void eliminar(ActionEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("El sistema comunica:");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Error. Las Facturas no se pueden dar de baja.");
-        alerta.show();
-        cancelar(event);
-    }
-    
+
     @FXML
     private void guardar(ActionEvent event) {
         int alumno = buscarAlumno();
         f.setAlumno(alumno);
         String fecha = txtFecha.getValue().toString();
         f.setFecha(fecha);
+        f.setConcepto("Pago de cuota");
         if (bandera) {//modificar
             int id = Integer.parseInt(txtId.getText());
             f.setId(id);
@@ -225,7 +238,7 @@ public class FacturaController implements Initializable {
                 alerta.setHeaderText(null);
                 alerta.setContentText("Error. Registro no modificado.");
                 alerta.show();
-                
+
             }
             bandera = false;
         } else {
@@ -235,21 +248,10 @@ public class FacturaController implements Initializable {
                 alerta.setHeaderText(null);
                 alerta.setContentText("Insertado correctamente en la base de datos");
                 alerta.show();
-                guardar2(event);
-                Alert alerta1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alerta1.setTitle("Aviso de Impresion");
-                alerta1.setHeaderText(null);
-                alerta1.setContentText("Desea factura?");
-                Optional<ButtonType> opcion = alerta1.showAndWait();
-                if (opcion.get() == ButtonType.OK) {
-                    int nfactura = Integer.parseInt(txtId.getText());
-                    String cliente = txtNRuc.getText();
-                    Double iva = Double.parseDouble(txtMonto.getText().replace(",", ".")) / 11;
-                    String Ubicacion = "/reportes/factura.jasper";
-                    String Titulo = "Factura N~" + String.valueOf(nfactura);
-                    imprimir(Ubicacion, Titulo, cliente, nfactura, iva);
-                }
+                int idF = Integer.parseInt(txtId.getText());
+                insertarDetalle(idF);
                 cancelar(event);
+                cancelar2(event);
             } else {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("El sistema comunica:");
@@ -257,26 +259,119 @@ public class FacturaController implements Initializable {
                 alerta.setContentText("Error. Registro no insertado.");
                 alerta.show();
             }
-            
         }
-        
         mostrarDatos();
-        
     }
-    
+
+    private void insertarDetalle(int idF) {
+        df.setFactura(idF);  // Asignamos el ID de factura a la entidad
+        for (detalle_factura dtf : listaDetalleFactura) {
+            // Asignamos los valores de cada detalle de factura a df
+            df.setCurso_id(dtf.getCurso_id());
+            df.setPago(dtf.getPago());
+            df.setNro_cuota(dtf.getNro_cuota());
+
+            // Intentamos insertar el detalle
+            if (df.insertar()) {
+                // Si la inserción fue exitosa, mostramos un mensaje de éxito
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("El sistema comunica:");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Detalles insertados en la base de datos.");
+                alerta.show();
+            } else {
+                // Si la inserción falla, mostramos un mensaje de error y salimos del ciclo
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("El sistema comunica:");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Error. Registro no insertado para el curso ID: " + dtf.getCurso_id());
+                alerta.show();
+                break;  // Salimos del ciclo si ocurre un error
+            }
+        }
+    }
+
+    @FXML
+    private void Agregaralatabladetalle(ActionEvent event) {
+        try {
+            String curso = cmbCurso.getSelectionModel().getSelectedItem();
+            int idCurso = buscarCurso();
+            int nrocuotas = Integer.parseInt(txtCuota.getText());
+            double total = Double.parseDouble(txtPago.getText().replace(",", "."));
+            int IdFactura = Integer.parseInt(txtId.getText());
+            System.out.println("Curso: " + curso + "idCurso" + idCurso + "Cuotas" + nrocuotas + "total" + total + "Factura" + IdFactura);
+            detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, curso);
+            validarMatricula();
+            listaDetalleFactura.add(dtf);
+            tablaFactura.refresh();
+            mostrarDatos2();
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "El detalle de factura se ha agregado correctamente.");
+            limpiarCampos();
+        } catch (Exception e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar el detalle de factura.");
+        }
+    }
+
+    @FXML
+    private void pagoMensual(KeyEvent event) {
+        String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
+        listaCurso = FXCollections.observableArrayList(new Curso().consulta());
+        listaDetalleCuota = FXCollections.observableArrayList(new detalle_cuota().consulta());
+        int CuotasDelAlumno = 0;
+        int idA = buscarAlumno();
+        for (detalle_cuota dc : listaDetalleCuota) {
+            if (dc.getGrupo().equals(seleccionado) && dc.getIdAlumno() == idA) {
+                CuotasDelAlumno = dc.getNro_cuota();
+            }
+        }
+        int NumeroCuotaPagar = Integer.parseInt(txtCuota.getText());
+        double operacion = 0;
+        for (Curso curso : listaCurso) {
+            if (curso.getNombre().equals(seleccionado)) {
+                operacion = curso.getCosto() / CuotasDelAlumno;
+                txtPago.setText(String.format("%.3f", operacion * NumeroCuotaPagar));
+                break;
+            }
+        }
+    }
+
+    @FXML
+    void validarMatricula() {
+        if (chkmatricula.isSelected()) {
+            listaCurso = FXCollections.observableArrayList(new Curso().consulta());
+            String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
+            double operacion;
+            for (Curso curso : listaCurso) {
+                if (curso.getNombre().equals(seleccionado)) {
+                    operacion = curso.getMatricula();
+                    try {
+                        int idCurso = buscarCurso();
+                        int nrocuotas = 0;
+                        double total = operacion;
+                        int IdFactura = Integer.parseInt(txtId.getText());
+                        detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, seleccionado);
+                        listaDetalleFactura.add(dtf);
+                        tablaFactura.refresh(); // Refresh table after adding the item
+                        mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "La matricula se ha agregado correctamente.");
+                        limpiarCampos();
+                    } catch (Exception e) {
+                        mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar la matricula.");
+                    }
+                    break;
+                }
+            }
+            return;
+        }
+    }
+
     @FXML
     private void cancelar(ActionEvent event) {
         txtAlumno.setDisable(true);
         cmbCurso.setDisable(true);
         cmbCurso.setValue(null);
         cmbCurso.setPromptText("Seleccione curso");
-        cmbConcepto.setDisable(true);
-        cmbConcepto.setValue(null);
-        cmbConcepto.setPromptText("Seleccione Concepto");
         txtFecha.setValue(null);
-        txtMonto.clear();
         txtAlumno.clear();
-        txtMonto.setDisable(true);
         txtCuota.clear();
         txtCuota.setDisable(true);
         txtId.clear();
@@ -288,31 +383,49 @@ public class FacturaController implements Initializable {
         btnCancelar.setDisable(true);
         btnNuevo.setDisable(false);
     }
-    
-    private void guardar2(ActionEvent event) {
-        int factura = Integer.parseInt(txtId.getText());
-        int curso = buscarCurso();
-        int Cuota = Integer.parseInt(txtCuota.getText());
-        double monto = Double.parseDouble((txtMonto.getText().replace(",", ".")));
-        df.setFactura(factura);
-        df.setCurso_id(curso);
-        df.setNro_cuota(Cuota);
-        df.setPago(monto);
-        if (df.insertar()) {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("El sistema comunica:");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Detalles insetados en la base de datos");
-            alerta.show();
+
+    @FXML
+    private void cancelar2(ActionEvent event) {
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
+        cmbCurso.setValue(null);
+        txtCuota.clear();
+        txtPago.clear();
+        btnNuevo2.setDisable(true);
+        chkmatricula.setSelected(false);
+        chkmatricula.setDisable(true);
+        btnEliminar2.setDisable(true);
+        btnCancelar2.setDisable(true);
+        cmbCurso.setDisable(true);
+        txtCuota.setDisable(true);
+        txtPago.setDisable(true);
+    }
+
+    @FXML
+    private void eliminar(ActionEvent event) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("El sistema comunica:");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Error. Las Facturas no se pueden dar de baja.");
+        alerta.show();
+        cancelar(event);
+    }
+
+    @FXML
+    private void eliminar2(ActionEvent event) {
+        detalle_factura df = tablaFactura2.getSelectionModel().getSelectedItem();
+        if (df != null) {
+            listaDetalleFactura.remove(df);
+            tablaFactura.refresh(); // Refresh table after removing the item
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "El detalle de factura se ha eliminado correctamente.");
+            limpiarCampos();
         } else {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("El sistema comunica:");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Error. Registro no insertado.");
-            alerta.show();
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No hay un detalle de factura seleccionado para eliminar.");
         }
     }
-    
+
     private int buscarCurso() {
         String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
@@ -325,29 +438,29 @@ public class FacturaController implements Initializable {
         }
         return 0;
     }
-    
+
     private void cargarCurso() {
         cmbCurso.getItems().clear();
         listaCurso = FXCollections.observableArrayList(c.consulta());
         List<Integer> cursosAlumnoIds = dc.obtenerCursosDelAlumno(buscarAlumno());
-        
+
         for (Curso curso : listaCurso) {
             if (cursosAlumnoIds.contains(curso.getId())) {
                 cmbCurso.getItems().add(curso.getNombre());
             }
         }
     }
-    
+
     public void setAlumno(String Alumno) {
         txtAlumno.clear();
         txtAlumno.setText(Alumno);
     }
-    
+
     @FXML
     public void Alumno(KeyEvent event) {
         String buscarAlumno = txtAlumno.getText();
         contextMenu.getItems().clear();
-        
+
         if (!buscarAlumno.isEmpty()) {
             for (String nombreAlumno : alumnoNombres) {
                 if (nombreAlumno.toLowerCase().contains(buscarAlumno.toLowerCase())) {
@@ -365,30 +478,30 @@ public class FacturaController implements Initializable {
             contextMenu.hide();
         }
     }
-    
+
     private void cargarNombresAlumnos() {
         listaAlumno = FXCollections.observableArrayList(a.consulta());
         for (Alumno alumno : listaAlumno) {
             alumnoNombres.add(alumno.getNombre() + " " + alumno.getApellido());
         }
     }
-    
+
     private int buscarAlumno() {
         listaAlumno = FXCollections.observableArrayList(a.consulta());
         String alumnoNombre = txtAlumno.getText();
-        
+
         if (alumnoNombre.isEmpty()) {
             return 0;
         }
-        
+
         String[] nombreApellido = alumnoNombre.split(" ");
         if (nombreApellido.length < 2) {
             return 0;
         }
-        
+
         String nombre = nombreApellido[0];
         String apellido = nombreApellido[1];
-        
+
         for (Alumno alumno : listaAlumno) {
             if (alumno.getNombre().equals(nombre) && alumno.getApellido().equals(apellido)) {
                 return alumno.getId();
@@ -396,146 +509,14 @@ public class FacturaController implements Initializable {
         }
         return 0;
     }
-    
-    public void abrirFxml(String fxml, String titulo) {
-        try {
-            loader = new FXMLLoader(getClass().getResource(fxml)); // Inicializar loader aquí
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle(titulo);
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AlumnoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
-//    private void pagoMensual(ActionEvent event) {
-//        encontrarCuotas(event);
-//        String tipoConcepto = buscarConcepto();
-//        listaDetalleCuota = FXCollections.observableArrayList(dc.consulta());
-//        String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
-//        String alumno = txtAlumno.getText();
-//        int cuotas = 1;
-//        String monto = "";
-//        double operacion;
-//        if (tipoConcepto.contains("Pago de Cuota")) {
-//            for (detalle_cuota object : listaDetalleCuota) {
-//                if (object.getAlumno().equals(alumno) && object.getGrupo().equals(seleccionado)) {
-//                    cuotas = object.getNro_cuota();
-//                    break;
-//                }
-//            }
-//            for (Curso object : listaCurso) {
-//                if (object.getNombre().equals(seleccionado)) {
-//                    operacion = object.getCosto() / cuotas;
-//                    monto = String.format("%.3f", operacion);
-//                    txtMonto.setText(monto);
-//                    break;
-//                }
-//            }
-//        } else {
-//            for (Curso object : listaCurso) {
-//                if (object.getNombre().equals(seleccionado)) {
-//                    operacion = object.getMatricula();
-//                    monto = String.format("%.3f", operacion);
-//                    txtMonto.setText(monto);
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//
-//    public void cargarConceptos() {
-//        cmbConcepto.getItems().clear();
-//        ObservableList<String> conceptos = FXCollections.observableArrayList();
-//
-//        String alumnoNombre = txtAlumno.getText();
-//        if (alumnoNombre.isEmpty()) {
-//            return;
-//        }
-//
-//        boolean matriculado = false;
-//        listaDetalleFactura = FXCollections.observableArrayList(df.consulta());
-//
-//        for (detalle_factura object : listaDetalleFactura) {
-//            if (alumnoNombre.equals(object.getNombreAlumno()) && object.getNro_cuota() == 0) {
-//                matriculado = true;
-//                break;
-//            }
-//        }
-//
-//        if (matriculado) {
-//            conceptos.add("Pago de Cuota");
-//        } else {
-//            conceptos.addAll("Matrícula", "Pago de Cuota");
-//        }
-//
-//        cmbConcepto.setItems(conceptos);
-//    }
-//
-//    public String buscarConcepto() {
-//        String seleccionado = cmbConcepto.getSelectionModel().getSelectedItem();
-//        String curso = cmbCurso.getSelectionModel().getSelectedItem();
-//        String cuotas = txtCuota.getText();
-//        System.out.println(seleccionado);
-//        if (seleccionado == null) {
-//            return "";
-//        }
-//        if (seleccionado.equals("Matrícula")) {
-//            return "Matricula Cursillo AMPERE";
-//        } else {
-//            return "Pago de Cuota, Cursillo: " + curso + " Cuota " + cuotas + " de " + CuotaTotal;
-//        }
-//    }
-//
-//    public void encontrarCuotas(ActionEvent event) {
-//        String concepto = buscarConcepto();
-//        if (concepto.contains("Pago de Cuota")) {
-//            int cuotas = 0;
-//            boolean cuotaexonerada = false;
-//            String Alumno = txtAlumno.getText();
-//            String Curso = cmbCurso.getSelectionModel().getSelectedItem();
-//            listaDetalleFactura = FXCollections.observableArrayList(df.consulta());
-//            listaDetalleCuota = FXCollections.observableArrayList(dc.consulta());
-//            if (Curso == null || Curso.isEmpty()) {
-//                return;
-//            }
-//            for (detalle_factura object : listaDetalleFactura) {
-//                if (Alumno.equals(object.getNombreAlumno()) && Curso.equals(object.getNombreCurso()) && object.getNro_cuota() != 0) {
-//                    cuotas++;
-//                }
-//            }
-//            cuotas++;
-//            for (detalle_cuota objeto : listaDetalleCuota) {
-//                if (Alumno.equals(objeto.getAlumno()) && Curso.equals(objeto.getGrupo())) {
-//                    CuotaTotal = String.valueOf(objeto.getNro_cuota());
-//                    if (objeto.getNro_cuota() < cuotas) {
-//                        cuotaexonerada = true;
-//                    }
-//                }
-//            }
-//            if (cuotaexonerada) {
-//                Alert alerta = new Alert(Alert.AlertType.WARNING);
-//                alerta.setTitle("El sistema comunica:");
-//                alerta.setHeaderText(null);
-//                alerta.setContentText("Error. El alumno ya ha pagado todas sus cuotas!.");
-//                alerta.show();
-//                cancelar(event);
-//            } else {
-//                txtCuota.setText(String.valueOf(cuotas));
-//            }
-//        } else {
-//            txtCuota.setText("0");
-//        }
-//    }
     public boolean validarCampos() {
         if (esCampoVacio(txtAlumno, "El campo de Nombre está vacío.")) {
             return true;
         }
         return false;
     }
-    
+
     private boolean esCampoVacio(TextField campo, String mensajeError) {
         if (campo.getText() == null || campo.getText().trim().isEmpty()) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", mensajeError);
@@ -543,7 +524,7 @@ public class FacturaController implements Initializable {
         }
         return false;
     }
-    
+
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
@@ -551,12 +532,12 @@ public class FacturaController implements Initializable {
         alerta.setContentText(mensaje);
         alerta.show();
     }
-    
+
     public void imprimir(String Ubicacion, String Titulo, String Cliente, int nfactura, Double iva) {
         reportes r = new reportes();
         r.generarFactura(Ubicacion, Titulo, Cliente, nfactura, iva);
     }
-    
+
     @FXML
     public void abrirMenu(ActionEvent event) {
         try {
@@ -570,12 +551,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(menuScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirAlumno(ActionEvent event) {
         try {
@@ -589,12 +570,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(alumnoScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirMateria(ActionEvent event) {
         try {
@@ -608,12 +589,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(materiaScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirAula(ActionEvent event) {
         try {
@@ -627,12 +608,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(aulaScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirProfesor(ActionEvent event) {
         try {
@@ -646,12 +627,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(profesoresScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void abrirPago(ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -664,12 +645,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(pagoScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirCurso(ActionEvent event) {
         try {
@@ -683,12 +664,12 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(cursoScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     public void abrirNotas(ActionEvent event) {
         try {
@@ -702,21 +683,10 @@ public class FacturaController implements Initializable {
             // Cambiar la escena del Stage
             window.setScene(notasScene);
             window.show();
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    @FXML
-    private boolean Agregar(ActionEvent event) throws IOException {
-        abrirFxml("AgregarFactura.fxml", "ABM AGREGAR");
-        AgregarFacturaController af = loader.getController(); // Obtener el controlador después de cargar el FXML
-        if (af != null) {
-            af.txtAlumno.setText(txtAlumno.getText());
-            af.txtId.setText(txtId.getText());
-            return true;
-        }
-        return false;
-    }
+
 }

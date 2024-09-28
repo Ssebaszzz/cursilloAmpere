@@ -80,17 +80,17 @@
                   </TableView>
                   <HBox layoutX="571.0" layoutY="438.0" prefHeight="49.0" prefWidth="540.0" spacing="10.0">
                      <children>
-                        <Button fx:id="btnNuevo2" disable="true" mnemonicParsing="false" onAction="#modificar" styleClass="btnCancelar" stylesheets="@Menu.css" text="Añadir">
+                        <Button fx:id="btnNuevo2" disable="true" mnemonicParsing="false" onAction="#Agregaralatabladetalle" styleClass="btnCancelar" stylesheets="@Menu.css" text="Añadir">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnEliminar2" disable="true" mnemonicParsing="false" onAction="#modificar" styleClass="btnCancelar" stylesheets="@Menu.css" text="Eliminar">
+                        <Button fx:id="btnEliminar2" disable="true" mnemonicParsing="false" onAction="#eliminar2" styleClass="btnCancelar" stylesheets="@Menu.css" text="Eliminar">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btncancelar2" disable="true" mnemonicParsing="false" onAction="#modificar" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
+                        <Button fx:id="btnCancelar2" disable="true" mnemonicParsing="false" onAction="#cancelar2" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -126,7 +126,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#abrirCurso" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Curso">
+                        <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Curso">
                            <font>
                               <Font size="14.0" />
                            </font>

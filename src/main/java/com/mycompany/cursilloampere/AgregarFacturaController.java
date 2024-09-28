@@ -71,18 +71,6 @@ public class AgregarFacturaController implements Initializable {
         tablaFactura.setItems(listaDetalleFactura);
     }
 
-    @FXML
-    private void mostrarFila(MouseEvent event) {
-        detalle_factura df = tablaFactura.getSelectionModel().getSelectedItem();
-        if (df != null) {
-            txtCuota.setText(String.valueOf(df.getNro_cuota()));
-            txtPago.setText(String.valueOf(df.getPago()));
-            btnEliminar.setDisable(false);
-            btnCancelar.setDisable(false);
-            cargarCurso();
-            cmbCurso.setValue(df.getNombreCurso());
-        }
-    }
 
     @FXML
     private void agregar(ActionEvent event) {
