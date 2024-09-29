@@ -125,6 +125,8 @@ public class FacturaController implements Initializable {
     private ComboBox<String> cmbCurso;
     @FXML
     private TextField txtCuota;
+    @FXML
+    private Button btnMenu;
 
     /**
      * Initializes the controller class.
@@ -191,6 +193,7 @@ public class FacturaController implements Initializable {
         btnNuevo.setDisable(true);
         btnAgregar.setDisable(false);
     }
+
     @FXML
     private void Agregar(ActionEvent event) {
         btnNuevo2.setDisable(false);
@@ -301,7 +304,6 @@ public class FacturaController implements Initializable {
             int IdFactura = Integer.parseInt(txtId.getText());
             System.out.println("Curso: " + curso + "idCurso" + idCurso + "Cuotas" + nrocuotas + "total" + total + "Factura" + IdFactura);
             detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, curso);
-            validarMatricula();
             listaDetalleFactura.add(dtf);
             tablaFactura.refresh();
             mostrarDatos2();
@@ -334,36 +336,7 @@ public class FacturaController implements Initializable {
             }
         }
     }
-
-    @FXML
-    void validarMatricula() {
-        if (chkmatricula.isSelected()) {
-            listaCurso = FXCollections.observableArrayList(new Curso().consulta());
-            String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
-            double operacion;
-            for (Curso curso : listaCurso) {
-                if (curso.getNombre().equals(seleccionado)) {
-                    operacion = curso.getMatricula();
-                    try {
-                        int idCurso = buscarCurso();
-                        int nrocuotas = 0;
-                        double total = operacion;
-                        int IdFactura = Integer.parseInt(txtId.getText());
-                        detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, seleccionado);
-                        listaDetalleFactura.add(dtf);
-                        tablaFactura.refresh(); // Refresh table after adding the item
-                        mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "La matricula se ha agregado correctamente.");
-                        limpiarCampos();
-                    } catch (Exception e) {
-                        mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar la matricula.");
-                    }
-                    break;
-                }
-            }
-            return;
-        }
-    }
-
+    
     @FXML
     private void cancelar(ActionEvent event) {
         txtAlumno.setDisable(true);
@@ -651,7 +624,6 @@ public class FacturaController implements Initializable {
         }
     }
 
-    @FXML
     public void abrirCurso(ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos

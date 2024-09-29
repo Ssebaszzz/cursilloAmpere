@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.FacturaController">
+<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.FacturaController">
    <children>
       <BorderPane layoutX="195.0" layoutY="157.0" prefHeight="539.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -24,17 +24,17 @@
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="75.0" styleClass="tableCell" text="Id" />
                         <TableColumn fx:id="colFecha" prefWidth="124.0" styleClass="tableCell" text="Fecha" />
-                        <TableColumn fx:id="colConcepto" prefWidth="166.0" styleClass="tableCell" text="Concepto" />
-                        <TableColumn fx:id="colAlumno" minWidth="0.0" prefWidth="257.0" styleClass="tableCell" text="Alumno" />
-                        <TableColumn fx:id="colRuc" prefWidth="89.0" styleClass="tableCell" text="Ruc" />
+                        <TableColumn fx:id="colConcepto" prefWidth="131.0" styleClass="tableCell" text="Concepto" />
+                        <TableColumn fx:id="colAlumno" minWidth="0.0" prefWidth="232.0" styleClass="tableCell" text="Alumno" />
+                        <TableColumn fx:id="colRuc" prefWidth="149.0" styleClass="tableCell" text="Ruc" />
                      </columns>
                   </TableView>
                   <HBox layoutX="4.0" layoutY="398.0" prefHeight="62.0" prefWidth="562.0" spacing="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="554.0">
                      <children>
                         <TextField fx:id="txtId" disable="true" prefHeight="37.0" prefWidth="37.0" promptText="Id" styleClass="txtFiedlNombre" stylesheets="@Menu.css" />
-                        <TextField fx:id="txtAlumno" disable="true" onKeyReleased="#Alumno" prefHeight="37.0" prefWidth="123.0" promptText="Alumno" styleClass="textFiedlApellido" stylesheets="@Menu.css" />
-                        <DatePicker fx:id="txtFecha" disable="true" prefHeight="37.0" prefWidth="129.0" promptText="Seleccione la fecha" />
-                        <Button fx:id="btnAgregar" disable="true" mnemonicParsing="false" onAction="#Agregar" prefHeight="43.0" prefWidth="238.0" styleClass="btnAula" stylesheets="@Menu.css" text="Agregar o Modificar">
+                        <TextField fx:id="txtAlumno" disable="true" onKeyReleased="#Alumno" prefHeight="37.0" prefWidth="193.0" promptText="Alumno" styleClass="textFiedlApellido" stylesheets="@Menu.css" />
+                        <DatePicker fx:id="txtFecha" disable="true" prefHeight="37.0" prefWidth="190.0" promptText="Seleccione la fecha" />
+                        <Button fx:id="btnAgregar" disable="true" mnemonicParsing="false" onAction="#Agregar" prefHeight="43.0" prefWidth="104.0" styleClass="btnAula" stylesheets="@Menu.css" text="Agregar">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -42,9 +42,9 @@
                      </children>
                   </HBox>
                   <TextField layoutX="77.0" layoutY="14.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" />
-                  <HBox layoutX="80.0" layoutY="506.0" prefHeight="64.0" prefWidth="752.0" spacing="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="4.0">
+                  <HBox layoutX="268.0" layoutY="505.0" prefHeight="64.0" prefWidth="609.0" spacing="30.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="243.0">
                      <children>
-                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" styleClass="btnCurso" stylesheets="@Menu.css" text="Factura">
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" styleClass="btnCurso" stylesheets="@Menu.css" text="Nuevo">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -71,14 +71,14 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="tablaFactura2" layoutX="572.0" layoutY="49.0" onMouseClicked="#mostrarFila" prefHeight="338.0" prefWidth="538.0" styleClass="tableView" stylesheets="@Menu.css">
+                  <TableView fx:id="tablaFactura2" layoutX="572.0" layoutY="49.0" onMouseClicked="#mostrarFila" prefHeight="236.0" prefWidth="543.0" styleClass="tableView" stylesheets="@Menu.css">
                      <columns>
                         <TableColumn fx:id="colGrupo" prefWidth="92.0" styleClass="tableCell" text="Grupo" />
-                        <TableColumn fx:id="colNroCuotas" prefWidth="270.0" styleClass="tableCell" text="Numero de cuotas a pagar" />
-                        <TableColumn fx:id="colTotal" prefWidth="176.0" styleClass="tableCell" text="Total" />
+                        <TableColumn fx:id="colNroCuotas" prefWidth="255.0" styleClass="tableCell" text="Numero de cuotas a pagar" />
+                        <TableColumn fx:id="colTotal" prefWidth="194.0" styleClass="tableCell" text="Total" />
                      </columns>
                   </TableView>
-                  <HBox layoutX="571.0" layoutY="438.0" prefHeight="49.0" prefWidth="540.0" spacing="10.0">
+                  <HBox layoutX="697.0" layoutY="337.0" prefHeight="49.0" prefWidth="293.0" spacing="10.0">
                      <children>
                         <Button fx:id="btnNuevo2" disable="true" mnemonicParsing="false" onAction="#Agregaralatabladetalle" styleClass="btnCancelar" stylesheets="@Menu.css" text="Añadir">
                            <font>
@@ -97,10 +97,10 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox layoutX="571.0" layoutY="397.0" prefHeight="41.0" prefWidth="540.0" spacing="30.0">
+                  <HBox layoutX="573.0" layoutY="289.0" prefHeight="41.0" prefWidth="542.0" spacing="30.0">
                      <children>
-                        <ComboBox fx:id="cmbCurso" disable="true" prefHeight="25.0" prefWidth="141.0" promptText="Curso" />
-                        <CheckBox fx:id="chkmatricula" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Matrícula" />
+                        <ComboBox fx:id="cmbCurso" disable="true" prefHeight="40.0" prefWidth="120.0" promptText="Curso" />
+                        <CheckBox fx:id="chkmatricula" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="99.0" text="Matrícula" />
                         <TextField fx:id="txtCuota" disable="true" onKeyReleased="#pagoMensual" prefHeight="37.0" prefWidth="139.0" promptText="Cuotas por pagar" />
                         <TextField fx:id="txtPago" disable="true" prefHeight="37.0" prefWidth="140.0" promptText="Monto del pago" />
                      </children>
