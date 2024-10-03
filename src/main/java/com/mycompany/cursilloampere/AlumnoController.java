@@ -119,6 +119,10 @@ public class AlumnoController implements Initializable {
     private Button btnFactura;
     @FXML
     private ComboBox<String> cmbCurso;
+    @FXML
+    private Button btnMenu;
+    @FXML
+    private Button btnCurso;
 
     /**
      * Initializes the controller class.
@@ -233,7 +237,6 @@ public class AlumnoController implements Initializable {
         }
     }
 
-    @FXML
     private void buscar(KeyEvent event) {
         registrosFiltrados = FXCollections.observableArrayList();
         String busqueda = txtBuscar.getText();
@@ -402,7 +405,6 @@ public class AlumnoController implements Initializable {
         return false;
     }
 
-    @FXML
     private void abrirFactura(ActionEvent event) {
         abrirFxml("factura.fxml", "ABM Factura");
         FacturaController factura = loader.getController(); // Obtener el controlador después de cargar el FXML
@@ -411,7 +413,6 @@ public class AlumnoController implements Initializable {
         }
     }
 
-    @FXML
     private void cuotaCurso() {
         String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
         for (Curso object : listaCurso) {

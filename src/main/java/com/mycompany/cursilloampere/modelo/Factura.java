@@ -162,5 +162,23 @@ public class Factura extends conexion implements sentencias {
         }
         return -1;
     }
-    
+    public boolean matriculado(int idA) {
+    String sql = "SELECT CASE WHEN df.nro_cuota = 0 THEN TRUE ELSE FALSE END AS esta_matriculado " +
+                 "FROM factura f " +
+                 "JOIN detalle_factura df ON f.id = df.factura_id " +
+                 "WHERE f.alumno_id = ? LIMIT 1";
+    try (Connection con = getCon(); PreparedStatement stm = con.prepareStatement(sql)) {
+        stm.setInt(1, idA); // Usamos idA para el alumno_id
+
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            return rs.getBoolean("esta_matriculado");
+        }
+        return false; // Retornar false si no se encuentra el alumno
+    } catch (SQLException ex) {
+        Logger.getLogger(Factura.class.getName()).log(Level.SEVERE, null, ex);
+        return false;
+    }
+}
+
 }

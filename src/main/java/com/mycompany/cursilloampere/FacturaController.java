@@ -37,6 +37,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -86,6 +88,7 @@ public class FacturaController implements Initializable {
     private DatePicker txtFecha;
     ObservableList<Factura> listaFactura;
     ObservableList<detalle_factura> listaDetalleFactura;
+    ObservableList<detalle_factura> listaDetalleFactura2;
     ObservableList<Curso> listaCurso;
     ObservableList<Alumno> listaAlumno;
     ObservableList<detalle_cuota> listaDetalleCuota;
@@ -136,12 +139,12 @@ public class FacturaController implements Initializable {
         mostrarDatos();
         cargarNombresAlumnos();
         listaDetalleFactura = FXCollections.observableArrayList();
+        listaDetalleFactura2 = FXCollections.observableArrayList();
     }
 
     public void mostrarDatos() {
-        listaFactura = FXCollections.observableArrayList();
+        listaFactura = FXCollections.observableArrayList(f.consulta());
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        colRuc.setCellValueFactory(new PropertyValueFactory<>("Ruc"));
         colConcepto.setCellValueFactory(new PropertyValueFactory<>("Concepto"));
         colAlumno.setCellValueFactory(new PropertyValueFactory<>("NombreAlumno"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
@@ -167,19 +170,15 @@ public class FacturaController implements Initializable {
         btnCancelar.setDisable(false);
         btnNuevo.setDisable(true);
         listaDetalleFactura = FXCollections.observableArrayList(df.consulta());
-
+        mostrarFila2(f.getId());
     }
 
-    private void mostrarFila2(MouseEvent event) {
-        detalle_factura df = tablaFactura2.getSelectionModel().getSelectedItem();
-        if (df != null) {
-            txtCuota.setText(String.valueOf(df.getNro_cuota()));
-            txtPago.setText(String.valueOf(df.getPago()));
-            btnEliminar.setDisable(false);
-            btnCancelar.setDisable(false);
-            cargarCurso();
-            cmbCurso.setValue(df.getNombreCurso());
-        }
+    private void mostrarFila2(int idF) {
+        listaDetalleFactura2=buscarDetallesPorId(idF);
+        colGrupo.setCellValueFactory(new PropertyValueFactory<>("nombreCurso"));
+        colNroCuotas.setCellValueFactory(new PropertyValueFactory<>("Nro_cuota"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("Pago"));
+        tablaFactura2.setItems(listaDetalleFactura2);
     }
 
     @FXML
@@ -196,15 +195,24 @@ public class FacturaController implements Initializable {
 
     @FXML
     private void Agregar(ActionEvent event) {
-        btnNuevo2.setDisable(false);
-        cmbCurso.setDisable(false);
-        chkmatricula.setDisable(false);
-        txtPago.setDisable(false);
-        txtCuota.setDisable(false);
-        btnCancelar.setDisable(false);
-        btnAgregar.setDisable(false);
-        cargarCurso();
-        cmbCurso.setPromptText("Seleccione Curso");
+        if (validarMatricula()) {
+            btnNuevo2.setDisable(false);
+            cmbCurso.setDisable(false);
+            chkmatricula.setDisable(true);
+            txtPago.setDisable(false);
+            txtCuota.setDisable(false);
+            btnCancelar.setDisable(false);
+            btnAgregar.setDisable(true);
+            cargarCurso();
+            cmbCurso.setPromptText("Seleccione Curso");
+        } else {
+            btnCancelar2.setDisable(false);
+            btnNuevo2.setDisable(false);
+            cmbCurso.setDisable(false);
+            cargarCurso();
+            cmbCurso.getSelectionModel().selectFirst();
+            matricula(buscarCurso());
+        }
     }
 
     @FXML
@@ -224,12 +232,11 @@ public class FacturaController implements Initializable {
         f.setAlumno(alumno);
         String fecha = txtFecha.getValue().toString();
         f.setFecha(fecha);
-        f.setConcepto("Pago de cuota");
+        f.setConcepto(concepto());
         if (bandera) {//modificar
             int id = Integer.parseInt(txtId.getText());
             f.setId(id);
             if (f.modificar()) {
-                System.out.println("aqui llego");
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("El sistema comunica:");
                 alerta.setHeaderText(null);
@@ -292,6 +299,8 @@ public class FacturaController implements Initializable {
                 break;  // Salimos del ciclo si ocurre un error
             }
         }
+        listaDetalleFactura.clear();
+        tablaFactura2.getItems().clear();
     }
 
     @FXML
@@ -309,9 +318,13 @@ public class FacturaController implements Initializable {
             mostrarDatos2();
             mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "El detalle de factura se ha agregado correctamente.");
             limpiarCampos();
+            if (f.matriculado(buscarAlumno())) {
+                Agregar(event);
+            }
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar el detalle de factura.");
         }
+
     }
 
     @FXML
@@ -336,9 +349,95 @@ public class FacturaController implements Initializable {
             }
         }
     }
+
+    void matricula(int idC) {
+        listaCurso = FXCollections.observableArrayList(c.consulta());
+        for (Curso c : listaCurso) {
+            if (c.getId() == idC) {
+                txtPago.setText(String.format("%.3f", c.getMatricula()));
+            }
+        }
+    }
+    public ObservableList<detalle_factura> buscarDetallesPorId(int idF) {
+    ObservableList<detalle_factura> resultados = FXCollections.observableArrayList();
     
+    for (detalle_factura df : listaDetalleFactura) {
+        if (df.getFactura() == idF) {
+            resultados.add(df); // Agrega el detalle a la lista de resultados
+        }
+    }
+    
+    return resultados; // Retorna la lista, que puede estar vacía
+}
+    @FXML
+    private boolean validarMatricula() {
+        int alumno = buscarAlumno();
+        if (!(f.matriculado(alumno))) {
+            mostrarAlerta(INFORMATION, "El sistema comunica: ", "El alumno no se encuentra matriulado");
+            chkmatricula.setSelected(true);
+            btnAgregar.setDisable(false);
+            txtCuota.setDisable(true);
+            txtPago.setDisable(false);
+            txtCuota.setText("0");
+            return false;
+        }
+        return true;
+    }
+
+    void validarCuotas(int idA, int idC) {
+        int cuotasPagadas = 0;
+        boolean alumnoEncontrado = false;
+
+        // Obtener la lista de cuotas desde la consulta
+        listaDetalleCuota = FXCollections.observableArrayList(dc.consulta());
+
+        // Buscar las cuotas del alumno para el curso dado
+        for (detalle_cuota dc : listaDetalleCuota) {
+            if (dc.getIdAlumno() == idA && dc.getIdCurso() == idC) {
+                cuotasPagadas = dc.getNro_cuota();
+                alumnoEncontrado = true;
+                break; // Salir del bucle una vez encontrada la coincidencia
+            }
+        }
+
+        // Si no se encontró el alumno o el curso, mostrar un mensaje de error
+        if (!alumnoEncontrado) {
+            mostrarAlerta(ERROR, "El sistema comunica", "No se encontraron cuotas para este alumno y curso.");
+            return; // Salir del método
+        }
+
+        // Verificar si el valor de txtCuota es un número válido
+        int cuotaActual;
+        try {
+            cuotaActual = Integer.parseInt(txtCuota.getText());
+        } catch (NumberFormatException e) {
+            mostrarAlerta(ERROR, "El sistema comunica", "El valor de la cuota es inválido.");
+            return;
+        }
+
+        // Calcular las cuotas faltantes
+        int cuotasFaltantes = cuotasPagadas - cuotaActual;
+
+        // Mostrar mensajes basados en la cantidad de cuotas faltantes
+        if (cuotasFaltantes == 0) {
+            mostrarAlerta(ERROR, "El sistema comunica", "El alumno ya pagó todas las cuotas de este curso.");
+        } else if (cuotasFaltantes < 0) {
+            mostrarAlerta(ERROR, "El sistema comunica", "El alumno tiene " + (-cuotasFaltantes) + " cuota(s) por pagar.");
+        }
+    }
+
+    public String concepto() {
+        for (detalle_factura dc : listaDetalleFactura) {
+            if (dc.getNro_cuota() == 0) {
+                return "Matricula"; // Retorna "Matricula" si se encuentra una cuota de 0
+            }
+        }
+        return "Pago de Cuota"; // Retorna cadena vacía si no se encontró cuota de 0
+    }
+
     @FXML
     private void cancelar(ActionEvent event) {
+        cancelar2(event);
         txtAlumno.setDisable(true);
         cmbCurso.setDisable(true);
         cmbCurso.setValue(null);
@@ -360,6 +459,9 @@ public class FacturaController implements Initializable {
     @FXML
     private void cancelar2(ActionEvent event) {
         limpiarCampos();
+        listaDetalleFactura.clear();
+        listaDetalleFactura2.clear();
+        tablaFactura2.getItems().clear();
     }
 
     private void limpiarCampos() {
@@ -374,6 +476,7 @@ public class FacturaController implements Initializable {
         cmbCurso.setDisable(true);
         txtCuota.setDisable(true);
         txtPago.setDisable(true);
+        
     }
 
     @FXML

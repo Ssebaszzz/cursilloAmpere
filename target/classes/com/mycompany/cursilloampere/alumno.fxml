@@ -156,7 +156,7 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnModCurso" disable="true" mnemonicParsing="false" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Asignar o Modificar Curso" />
+                        <Button fx:id="btnModCurso" disable="true" mnemonicParsing="false" onAction="#abrirDetalle" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Asignar o Modificar Curso" />
                      </children>
                   </HBox>
                   <HBox layoutX="136.0" layoutY="443.0" prefHeight="100.0" prefWidth="525.0" spacing="40.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="4.0">
