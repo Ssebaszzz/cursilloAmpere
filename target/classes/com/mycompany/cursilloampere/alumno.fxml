@@ -150,13 +150,14 @@
                      <children>
                         <DatePicker fx:id="txtInscripcion" disable="true" prefHeight="25.0" prefWidth="151.0" promptText="Fecha Inscripcion" />
                         <TextField fx:id="txtRuc" disable="true" promptText="RUC" styleClass="txtFieldRuc" stylesheets="@Menu.css" />
+                        <TextField fx:id="txtRucNom" disable="true" promptText="Nombre del Ruc" styleClass="txtFieldRuc" stylesheets="@Menu.css" />
                         <ComboBox fx:id="cmbCurso" disable="true" prefWidth="150.0" promptText="Grupo" />
                         <TextField fx:id="txtCuotas" disable="true" prefHeight="25.0" prefWidth="92.0" promptText="Cuotas a Pagar" styleClass="txtFieldCuotas" stylesheets="@Menu.css" />
                         <Button fx:id="btnFactura" disable="true" mnemonicParsing="false" styleClass="btnFactura" stylesheets="@Menu.css" text="Generar Factura">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnModCurso" disable="true" mnemonicParsing="false" onAction="#abrirDetalle" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Asignar o Modificar Curso" />
+                        <Button fx:id="btnModCurso" disable="true" mnemonicParsing="false" onAction="#abrirDetalle" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Agregar Curso" />
                      </children>
                   </HBox>
                   <HBox layoutX="136.0" layoutY="443.0" prefHeight="100.0" prefWidth="525.0" spacing="40.0" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="4.0">
@@ -188,6 +189,7 @@
                         </Button>
                      </children>
                   </HBox>
+                  <TextField fx:id="txtRuc1" disable="true" layoutX="10.0" layoutY="10.0" promptText="RUC" styleClass="txtFieldRuc" stylesheets="@Menu.css" />
                </children>
             </AnchorPane>
          </center>

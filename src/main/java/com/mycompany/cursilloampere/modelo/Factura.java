@@ -25,10 +25,10 @@ public class Factura extends conexion implements sentencias {
     private String Fecha;
     private String Concepto;
     private int Alumno;
-    private int Ruc;
+    private String Ruc;
     private String NombreAlumno;
 
-    public Factura(int Id, String Fecha, String Concepto, int Alumno, int Ruc, String NombreAlumno) {
+    public Factura(int Id, String Fecha, String Concepto, int Alumno, String Ruc, String NombreAlumno) {
         this.Id = Id;
         this.Fecha = Fecha;
         this.Concepto = Concepto;
@@ -72,11 +72,11 @@ public class Factura extends conexion implements sentencias {
         this.Alumno = Alumno;
     }
 
-    public int getRuc() {
+    public String getRuc() {
         return Ruc;
     }
 
-    public void setRuc(int Ruc) {
+    public void setRuc(String Ruc) {
         this.Ruc = Ruc;
     }
 
@@ -110,7 +110,7 @@ public class Factura extends conexion implements sentencias {
                 String Concepto = rs.getString("concepto");
                 String NombreAlumno = rs.getString("Alumno");
                 String Fecha = rs.getString("fecha_pago");
-                int ruc = rs.getInt("Ruc");
+                String ruc = rs.getString("Ruc");
                 Factura f = new Factura(idFactura, Fecha, Concepto, idAlumno, ruc, NombreAlumno);
                 Facturas.add(f);
             }

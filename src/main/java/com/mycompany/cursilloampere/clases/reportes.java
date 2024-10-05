@@ -48,7 +48,7 @@ public class reportes extends conexion {
         }
     }
 
-    public void generarFactura(String ubicacion, String titulo, String nombreCliente, int nroFactura, double iva) {
+    public void generarFactura(String ubicacion, String titulo, int nroFactura, double totalPago) {
         try {
             // Ruta al archivo .jasper (compilado)
             String reportPath = getClass().getResource(ubicacion).getPath();
@@ -65,9 +65,8 @@ public class reportes extends conexion {
 
             // Parámetros del informe
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("NombreCliente", nombreCliente);
             parameters.put("Nrofactura", nroFactura);
-            parameters.put("iva10", iva);
+            parameters.put("TotalPago", totalPago);
 
             // Llenar el informe
             JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, getCon());

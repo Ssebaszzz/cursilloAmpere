@@ -46,6 +46,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -130,6 +131,8 @@ public class FacturaController implements Initializable {
     private TextField txtCuota;
     @FXML
     private Button btnMenu;
+    @FXML
+    private Label lblPago;
 
     /**
      * Initializes the controller class.
@@ -174,7 +177,7 @@ public class FacturaController implements Initializable {
     }
 
     private void mostrarFila2(int idF) {
-        listaDetalleFactura2=buscarDetallesPorId(idF);
+        listaDetalleFactura2 = buscarDetallesPorId(idF);
         colGrupo.setCellValueFactory(new PropertyValueFactory<>("nombreCurso"));
         colNroCuotas.setCellValueFactory(new PropertyValueFactory<>("Nro_cuota"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("Pago"));
@@ -228,6 +231,7 @@ public class FacturaController implements Initializable {
 
     @FXML
     private void guardar(ActionEvent event) {
+        double pago = Double.parseDouble(lblPago.getText().replace(",", "."));
         int alumno = buscarAlumno();
         f.setAlumno(alumno);
         String fecha = txtFecha.getValue().toString();
@@ -260,6 +264,19 @@ public class FacturaController implements Initializable {
                 alerta.show();
                 int idF = Integer.parseInt(txtId.getText());
                 insertarDetalle(idF);
+                if (tieneRuc(buscarAlumno())) {
+                    Alert alerta1 = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta1.setTitle("Aviso de impresion");
+                    alerta1.setHeaderText(null);
+                    alerta1.setContentText("Desea imprimir factura?");
+                    Optional<ButtonType> opcion = alerta1.showAndWait();
+                    if (opcion.get() == ButtonType.OK) {
+                        int nfactura=Integer.parseInt(txtId.getText());
+                        String Ubicacion = "/reportes/factura.jasper";
+                        String Titulo = "Factura N~" + nfactura;
+                        imprimir(Ubicacion, Titulo, nfactura, pago);
+                    }
+                }
                 cancelar(event);
                 cancelar2(event);
             } else {
@@ -321,6 +338,7 @@ public class FacturaController implements Initializable {
             if (f.matriculado(buscarAlumno())) {
                 Agregar(event);
             }
+            pagototal();
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar el detalle de factura.");
         }
@@ -330,8 +348,8 @@ public class FacturaController implements Initializable {
     @FXML
     private void pagoMensual(KeyEvent event) {
         String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
-        listaCurso = FXCollections.observableArrayList(new Curso().consulta());
-        listaDetalleCuota = FXCollections.observableArrayList(new detalle_cuota().consulta());
+        listaCurso = FXCollections.observableArrayList(c.consulta());
+        listaDetalleCuota = FXCollections.observableArrayList(dc.consulta());
         int CuotasDelAlumno = 0;
         int idA = buscarAlumno();
         for (detalle_cuota dc : listaDetalleCuota) {
@@ -343,7 +361,7 @@ public class FacturaController implements Initializable {
         double operacion = 0;
         for (Curso curso : listaCurso) {
             if (curso.getNombre().equals(seleccionado)) {
-                operacion = curso.getCosto() / CuotasDelAlumno;
+                operacion = curso.getCosto();
                 txtPago.setText(String.format("%.3f", operacion * NumeroCuotaPagar));
                 break;
             }
@@ -358,17 +376,19 @@ public class FacturaController implements Initializable {
             }
         }
     }
+
     public ObservableList<detalle_factura> buscarDetallesPorId(int idF) {
-    ObservableList<detalle_factura> resultados = FXCollections.observableArrayList();
-    
-    for (detalle_factura df : listaDetalleFactura) {
-        if (df.getFactura() == idF) {
-            resultados.add(df); // Agrega el detalle a la lista de resultados
+        ObservableList<detalle_factura> resultados = FXCollections.observableArrayList();
+
+        for (detalle_factura df : listaDetalleFactura) {
+            if (df.getFactura() == idF) {
+                resultados.add(df); // Agrega el detalle a la lista de resultados
+            }
         }
+
+        return resultados; // Retorna la lista, que puede estar vacía
     }
-    
-    return resultados; // Retorna la lista, que puede estar vacía
-}
+
     @FXML
     private boolean validarMatricula() {
         int alumno = buscarAlumno();
@@ -432,7 +452,25 @@ public class FacturaController implements Initializable {
                 return "Matricula"; // Retorna "Matricula" si se encuentra una cuota de 0
             }
         }
-        return "Pago de Cuota"; // Retorna cadena vacía si no se encontró cuota de 0
+        return "Pago de Cuotas"; // Retorna cadena vacía si no se encontró cuota de 0
+    }
+
+    public void pagototal() {
+        double total = 0;
+        for (detalle_factura df : listaDetalleFactura) {
+            total += df.getPago();
+        }
+        lblPago.setText("" + total);
+    }
+
+    public boolean tieneRuc(int idA) {
+        listaAlumno = FXCollections.observableArrayList(a.consulta());
+        for (Alumno a : listaAlumno) {
+            if (a.getId() == idA && a.getRuc() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @FXML
@@ -476,7 +514,7 @@ public class FacturaController implements Initializable {
         cmbCurso.setDisable(true);
         txtCuota.setDisable(true);
         txtPago.setDisable(true);
-        
+        lblPago.setText("");
     }
 
     @FXML
@@ -609,9 +647,9 @@ public class FacturaController implements Initializable {
         alerta.show();
     }
 
-    public void imprimir(String Ubicacion, String Titulo, String Cliente, int nfactura, Double iva) {
+    public void imprimir(String Ubicacion, String Titulo, int nfactura, Double Pago) {
         reportes r = new reportes();
-        r.generarFactura(Ubicacion, Titulo, Cliente, nfactura, iva);
+        r.generarFactura(Ubicacion, Titulo, nfactura, Pago);
     }
 
     @FXML

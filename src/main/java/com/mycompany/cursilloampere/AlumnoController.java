@@ -96,7 +96,7 @@ public class AlumnoController implements Initializable {
     @FXML
     private TableColumn<Alumno, String> colIns;
     @FXML
-    private TableColumn<Alumno, Integer> colRuc;
+    private TableColumn<Alumno, String> colRuc;
     @FXML
     private TextField txtId;
     ObservableList<Alumno> registros;//carga de los clientes en la tabla
@@ -123,6 +123,10 @@ public class AlumnoController implements Initializable {
     private Button btnMenu;
     @FXML
     private Button btnCurso;
+    @FXML
+    private TextField txtRucNom;
+    @FXML
+    private TextField txtRuc1;
 
     /**
      * Initializes the controller class.
@@ -139,6 +143,7 @@ public class AlumnoController implements Initializable {
         txtId.setText(String.valueOf(a.Auto_incremento()));
         cargarCurso();
         cmbCurso.setDisable(false);
+        txtRucNom.setDisable(false);
         txtCuotas.setDisable(false);
         txtCedula.setDisable(false);
         txtNombre.setDisable(false);
@@ -163,16 +168,16 @@ public class AlumnoController implements Initializable {
             int ced;
             int tel;
             int tel_padre;
-            int ruc;
             try {
                 ced = Integer.parseInt(txtCedula.getText());
                 tel = Integer.parseInt(txtTelefono.getText());
                 tel_padre = Integer.parseInt(txtPadres.getText());
-                ruc = Integer.parseInt(txtRuc.getText());
             } catch (NumberFormatException e) {
                 mostrarAlerta(Alert.AlertType.ERROR, "Error en los datos", "Por favor, ingresa solo números válidos en los campos correspondientes.");
                 return; // Detener la ejecución si hay un error de formato
             }
+            String ruc = txtRuc.getText();
+            String rucnom = txtRucNom.getText();
             String nom = txtNombre.getText();
             String ape = txtApellido.getText();
             String correo = txtCorreo.getText();
@@ -186,6 +191,7 @@ public class AlumnoController implements Initializable {
             a.setTelpadres(tel_padre);
             a.setFecha(fecha);
             a.setRuc(ruc);
+            a.setRucNom(rucnom);
             if (modificar) {
                 int id = Integer.parseInt(txtId.getText());
                 a.setId(id);
@@ -269,7 +275,8 @@ public class AlumnoController implements Initializable {
         txtPadres.setText(String.valueOf(a.getTelpadres()));
         LocalDate fecha = LocalDate.parse(a.getFecha(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         txtInscripcion.setValue(fecha);
-        txtRuc.setText(String.valueOf(a.getRuc()));
+        txtRuc.setText(a.getRuc());
+        txtRucNom.setText(a.getRucNom());
         btnFactura.setDisable(false);
     }
 
@@ -284,6 +291,7 @@ public class AlumnoController implements Initializable {
         txtTelefono.setDisable(false);
         txtPadres.setDisable(false);
         txtCorreo.setDisable(false);
+        txtRucNom.setDisable(false);
         btnEliminar.setDisable(true);
         btnMod.setDisable(true);
         btnCancelar.setDisable(false);
@@ -307,6 +315,7 @@ public class AlumnoController implements Initializable {
         txtTelefono.clear();
         txtCorreo.clear();
         txtPadres.clear();
+        txtRucNom.clear();
         txtInscripcion.setValue(null);
         txtRuc.clear();
         txtInscripcion.setDisable(true);
@@ -317,6 +326,7 @@ public class AlumnoController implements Initializable {
         txtTelefono.setDisable(true);
         txtCorreo.setDisable(true);
         txtPadres.setDisable(true);
+        txtRucNom.setDisable(true);
         btnMod.setDisable(true);
         btnGuardar.setDisable(true);
         btnEliminar.setDisable(true);
@@ -429,8 +439,7 @@ public class AlumnoController implements Initializable {
                 || esCampoVacio(txtApellido, "El campo de Apellido está vacío.")
                 || esCampoVacio(txtTelefono, "El campo de teléfono está vacío.")
                 || esCampoVacio(txtCorreo, "El campo de Correo está vacío.")
-                || esCampoVacio(txtPadres, "El campo de teléfono de padres está vacío.")
-                || esCampoVacio(txtRuc, "El campo de RUC está vacío.")) {
+                || esCampoVacio(txtPadres, "El campo de teléfono de padres está vacío.")) {
             return true;
         }
 

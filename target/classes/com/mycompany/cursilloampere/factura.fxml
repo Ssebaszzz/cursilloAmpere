@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -78,7 +79,7 @@
                         <TableColumn fx:id="colTotal" prefWidth="194.0" styleClass="tableCell" text="Total" />
                      </columns>
                   </TableView>
-                  <HBox layoutX="697.0" layoutY="337.0" prefHeight="49.0" prefWidth="293.0" spacing="10.0">
+                  <HBox layoutX="577.0" layoutY="337.0" prefHeight="49.0" prefWidth="538.0" spacing="10.0">
                      <children>
                         <Button fx:id="btnNuevo2" disable="true" mnemonicParsing="false" onAction="#Agregaralatabladetalle" styleClass="btnCancelar" stylesheets="@Menu.css" text="Añadir">
                            <font>
@@ -95,6 +96,8 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
+                        <Label disable="true" prefHeight="49.0" prefWidth="77.0" text="Total a pagar: " />
+                        <Label fx:id="lblPago" disable="true" prefHeight="49.0" prefWidth="77.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="573.0" layoutY="289.0" prefHeight="41.0" prefWidth="542.0" spacing="30.0">
