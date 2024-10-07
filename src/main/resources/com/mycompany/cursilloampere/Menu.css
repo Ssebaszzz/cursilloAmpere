@@ -1,6 +1,6 @@
-
+ 
 .btnMenu{
- -fx-background-color: #551f16;
+-fx-background-color: #551f16;
 -fx-border-width: 2px 2px 2px 2px;
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
@@ -37,7 +37,7 @@
 -fx-text-fill: white;
 }
 .btnGrupo{
-    -fx-background-color: #551f16;
+-fx-background-color: #551f16;
 -fx-border-width: 2px 2px 2px 2px;
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
@@ -154,7 +154,7 @@
 
 
 .btnNuevo{
-    -fx-background-color: #551f16;
+-fx-background-color: #551f16;
 -fx-border-width: 2px 2px 2px 2px;
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
@@ -215,7 +215,120 @@
 -fx-border-style: solid; 
 -fx-border-color:#551f16;
 -fx-text-fill: white;
+-fx-text-fill: white; /* Color del texto */
+-fx-background-radius: 30px; /* Esto da un borde redondeado */
+-fx-border-color: transparent; /* Elimina los bordes */
+-fx-border-width: 0px;
+}
+.button:hover {
+    -fx-background-color: #381211; /* Color del botón al hacer hover */
+    -fx-background-radius: 30px; /* Mantén el borde redondeado */
+    -fx-border-color: transparent; /* Sin bordes visibles en hover */
+    -fx-border-width: 0px;
+    -fx-effect: none; /* Elimina cualquier sombra o efecto */
 }
 .sidePane{
     -fx-background-color: #73392a;
+}
+/* Cambiar el color de fondo del ComboBox */
+.combo-box {
+    -fx-background-color: #551f16; /* Cambia el color de fondo del ComboBox */
+    -fx-border-color: #551f16; /* Cambia el color del borde */
+    -fx-border-radius: 2; /* Borde redondeado */
+    -fx-background-radius: 2; /* Radio de fondo redondeado */
+    -fx-padding: 2;
+}
+
+/* Cambiar el color del texto */
+.combo-box .text {
+    -fx-fill: white; /* Cambia el color del texto */
+    -fx-font-size: 12px; /* Cambia el tamaño de la fuente */
+    -fx-font-family: arial, sans-serif; /* Usa la fuente externa Space Ranger */
+}
+
+/* Cambiar el estilo del botón desplegable */
+.combo-box .arrow-button {
+    -fx-background-color: #551f16; /* Color del botón */
+    -fx-background-radius: 2; /* Radio redondeado */
+}
+
+/* Cambiar el color del texto en las opciones desplegables */
+.combo-box-popup .list-cell {
+    -fx-background-color: #551f16; /* Color de fondo de cada opción */
+    -fx-text-fill: #2c3e50; /* Color del texto en las opciones */
+    -fx-font-family: 'Space Ranger', sans-serif; /* Fuente externa para las opciones */
+    -fx-font-size: 12px;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #381211; /* Color al pasar el ratón sobre una opción */
+    -fx-text-fill: #ffffff; /* Cambia el color del texto al pasar el ratón */
+}
+/* Estilo general del DatePicker */
+.date-picker {
+    -fx-background-color: white; /* Fondo blanco */
+    -fx-border-color: #d9d9d9; /* Borde gris suave */
+    -fx-border-radius: 10px; /* Bordes sutilmente redondeados */
+    -fx-background-radius: 10px;
+    -fx-padding: 0px; /* Elimina padding extra */
+    -fx-font-family: 'Segoe UI', sans-serif; /* Fuente moderna */
+    -fx-font-size: 14px; /* Tamaño de fuente legible */
+    -fx-pref-height: 30px; /* Altura total de 30px */
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+}
+
+/* Campo de entrada del DatePicker */
+.date-picker .text-field {
+    -fx-text-fill: #333; /* Texto gris oscuro */
+    -fx-background-color: transparent; /* Fondo del campo transparente */
+    -fx-border-color: transparent; /* Sin bordes en el campo de entrada */
+    -fx-padding: 0px 5px; /* Ajusta el padding del texto */
+    -fx-pref-height: 30px; /* Mantiene la altura del campo */
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+}
+
+/* Desplegable del calendario */
+.date-picker-popup {
+    -fx-background-color: white; /* Fondo blanco */
+    -fx-border-color: #d9d9d9; /* Borde suave y limpio */
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+/* Celdas de los días */
+.date-cell, .day-cell {
+    -fx-background-color: white; /* Fondo blanco */
+    -fx-text-fill: #333; /* Texto gris oscuro */
+    -fx-border-color: #f0f0f0; /* Bordes sutiles entre los días */
+}
+
+/* Hover sobre las celdas del calendario */
+.date-cell:hover, .day-cell:hover {
+    -fx-background-color: #f5f5f5; /* Fondo gris muy claro en hover */
+}
+
+/* Día seleccionado */
+.date-cell:selected, .day-cell:selected {
+    -fx-background-color: #ff4d4d; /* Rojo sofisticado para resaltar */
+    -fx-text-fill: white; /* Texto blanco en el día seleccionado */
+    -fx-border-radius: 50%; /* Bordes redondeados para un aspecto moderno */
+}
+
+/* Días que no pertenecen al mes actual */
+.date-cell:empty {
+    -fx-background-color: #fafafa; /* Días fuera del mes con fondo suave */
+    -fx-text-fill: #ccc; /* Texto gris claro */
+}
+
+/* Flechas de navegación */
+.arrow-button {
+    -fx-background-color: white; /* Fondo blanco para las flechas */
+    -fx-border-color: transparent;
+    -fx-pref-height: 30px; /* Ajusta la altura de los botones */
+}
+
+.arrow-button .label {
+    -fx-text-fill: #ff4d4d; /* Flechas rojas como acento */
 }

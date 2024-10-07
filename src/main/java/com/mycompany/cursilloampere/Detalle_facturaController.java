@@ -295,7 +295,6 @@ public class Detalle_facturaController implements Initializable {
         alerta.show();
     }
 
-    @FXML
     public void abrirMenu (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -313,7 +312,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirCurso (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -331,7 +329,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirMateria (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -349,7 +346,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirAlumno (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -367,7 +363,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirProfesor (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -402,7 +397,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirrFactura (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos
@@ -420,7 +414,6 @@ public class Detalle_facturaController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
     public void abrirNotas (ActionEvent event) {
         try {
             // Cargar el archivo FXML de la ventana de Alumnos

@@ -3,53 +3,114 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="829.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.DetalleMateriaProfesorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.DetalleMateriaProfesorController">
    <children>
-      <Label layoutX="42.0" layoutY="36.0" prefHeight="37.0" prefWidth="226.0" text="Clases">
-         <font>
-            <Font name="Berlin Sans FB" size="33.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tablaClases" layoutX="268.0" layoutY="93.0" onMouseClicked="#mostrarFila" prefHeight="231.0" prefWidth="544.0">
-        <columns>
-          <TableColumn fx:id="colGrupo" prefWidth="108.0" text="Grupo" />
-          <TableColumn fx:id="colProfesor" prefWidth="142.0" text="Profesor" />
-            <TableColumn fx:id="colMateria" prefWidth="93.0" text="Materia" />
-            <TableColumn fx:id="colDuracion" prefWidth="75.0" text="Duracion" />
-            <TableColumn fx:id="colFecha" prefWidth="75.0" text="Fecha" />
-            <TableColumn fx:id="colId" prefWidth="50.0" text="Id" />
-        </columns>
-      </TableView>
-      <TextField fx:id="txtBuscar" layoutX="266.0" layoutY="42.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="544.0" promptText="🔍" />
-      <Pane layoutX="137.0" layoutY="347.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
-         <children>
-            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
-            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
-            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
-            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
-            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
-         </children>
-      </Pane>
-      <ComboBox fx:id="cmbProfesor" disable="true" layoutX="42.0" layoutY="234.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione Profesor" />
-      <ComboBox fx:id="cmbCurso" disable="true" layoutX="42.0" layoutY="267.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione Curso" />
-      <TextField fx:id="txtDuracion" disable="true" layoutX="42.0" layoutY="91.0" prefHeight="19.0" prefWidth="128.0" promptText="Duracion de la clase" />
-      <ComboBox fx:id="cmbMateria" disable="true" layoutX="42.0" layoutY="298.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione Materia" />
-      <TextField fx:id="txtId" disable="true" layoutX="178.0" layoutY="91.0" prefHeight="25.0" prefWidth="53.0" promptText="Id" />
-      <DatePicker fx:id="txtFecha" disable="true" layoutX="42.0" layoutY="123.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione la fecha" />
-      <Label layoutX="45.0" layoutY="148.0" text="Ingrese su hora de entrada" />
-      <Label layoutX="45.0" layoutY="190.0" text="Ingrese su hora de salida" />
-      <Spinner fx:id="spHrEn" disable="true" layoutX="45.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" />
-      <Spinner fx:id="spMinEn" disable="true" layoutX="125.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" />
-      <Spinner fx:id="spHrSal" disable="true" layoutX="45.0" layoutY="207.0" prefHeight="25.0" prefWidth="61.0" />
-      <Spinner fx:id="spMinSal" disable="true" layoutX="125.0" layoutY="207.0" prefHeight="25.0" prefWidth="61.0" />
+      <BorderPane layoutX="333.0" layoutY="185.0" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefWidth="140.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="2.0" layoutY="130.0" prefHeight="456.0" prefWidth="136.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="130.0">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Menu" />
+                        <Button mnemonicParsing="false" onMouseClicked="#alumno" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Alumno" />
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Profesor" />
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Curso" />
+                        <Button mnemonicParsing="false" onMouseClicked="#materia" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Materia" />
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Aula" />
+                        <Button mnemonicParsing="false" onMouseClicked="#notas" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Notas" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Pago" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Factura" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="30.0" prefWidth="136.0" styleClass="btnAula" text="Reportes" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="550.0" prefWidth="760.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tablaClases" layoutX="200.0" layoutY="100.0" onMouseClicked="#mostrarFila" prefHeight="280.0" prefWidth="752.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="45.0">
+                    <columns>
+                      <TableColumn fx:id="colId" prefWidth="42.0" styleClass="tableCell" text="ID" />
+                      <TableColumn fx:id="colGrupo" prefWidth="143.0" styleClass="tableCell" text="Curso" />
+                        <TableColumn fx:id="colProfesor" prefWidth="142.0" styleClass="tableCell" text="Profesor" />
+                        <TableColumn fx:id="colMateria" prefWidth="153.0" styleClass="tableCell" text="Materia" />
+                        <TableColumn fx:id="colDuracion" prefWidth="148.0" styleClass="tableCell" text="Duracion" />
+                        <TableColumn fx:id="colFecha" prefWidth="119.0" styleClass="tableCell" text="Fecha" />
+                    </columns>
+                  </TableView>
+                  <TextField layoutX="82.0" layoutY="14.0" onKeyReleased="#buscar" promptText="Buscar" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="15.0" />
+                  <HBox layoutX="4.0" layoutY="358.0" prefHeight="35.0" prefWidth="752.0" spacing="40.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="358.0">
+                     <children>
+                        <TextField fx:id="txtId" disable="true" prefHeight="25.0" prefWidth="40.0" promptText="Id" styleClass="textFiedlApellido" />
+                        <TextField fx:id="txtDuracion" disable="true" promptText="Duracion de la clase" styleClass="textFiedlApellido" />
+                        <DatePicker fx:id="txtFecha" disable="true" prefHeight="25.0" prefWidth="107.0" promptText="Fecha" />
+                        <Spinner fx:id="spHrEn" disable="true" prefWidth="60.0" />
+                        <Spinner fx:id="spMinEn" disable="true" prefWidth="60.0" />
+                        <Spinner fx:id="spHrSal" disable="true" prefWidth="60.0" />
+                        <Spinner fx:id="spMinSal" disable="true" prefWidth="60.0" />
+                     </children>
+                  </HBox>
+                  <Text layoutX="415.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HORA DE ENTRADA">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="621.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HORA DE SALIDA">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="109.0" layoutY="417.0" prefHeight="42.0" prefWidth="542.0" spacing="40.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="109.0">
+                     <children>
+                        <ComboBox fx:id="cmbProfesor" disable="true" prefWidth="150.0" promptText="Profesor" />
+                        <ComboBox fx:id="cmbCurso" disable="true" prefWidth="150.0" promptText="Curso" />
+                        <ComboBox fx:id="cmbMateria" disable="true" prefWidth="150.0" promptText="Materia" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="40.0" layoutY="496.0" prefHeight="47.0" prefWidth="680.0" spacing="75.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+                     <children>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="35.0" prefWidth="65.0" styleClass="btnAula" text="Nuevo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Eliminar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="85.0" styleClass="btnAula" text="Modificar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Guardar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Cancelar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

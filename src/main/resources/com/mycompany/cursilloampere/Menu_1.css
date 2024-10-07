@@ -1,0 +1,37 @@
+.pane {
+    -fx-background-color: #551f16; /* Color de fondo del pane */
+    -fx-border-color: #ccc; /* Color del borde */
+    -fx-border-radius: 15px; /* Borde redondeado */
+    -fx-background-radius: 15px; /* Aseguramos que el fondo también sea redondeado */
+    -fx-padding: 20px; /* Espacio interior */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 0); /* Sombras para dar un efecto de profundidad */
+    -fx-alignment: center; /* Alineamos el contenido al centro */
+    -fx-cursor: hand; /* Cambia el cursor a "mano" cuando se pasa el mouse por encima */
+}
+
+/* Hover para oscurecer el Pane */
+.pane:hover {
+    -fx-background-color:#381211; /* Color más oscuro al pasar el mouse */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 15, 0, 0, 0); /* Sombra más pronunciada */
+}
+
+/* Estilo para la imagen dentro del Pane */
+.pane .image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Sombra en la imagen */
+    -fx-background-radius: 10px;
+    -fx-cursor: hand; /* Cambia el cursor a "mano" cuando se pasa el mouse por encima */
+}
+
+/* Estilo para el botón */
+.pane .button {
+    -fx-background-color: transparent; /* Color de fondo del botón */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-background-radius: 10px; /* Borde redondeado para el botón */
+    -fx-padding: 8px 16px; /* Espaciado interior del botón */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-cursor: hand; /* Cambia el cursor a "mano" cuando se pasa el mouse por encima */
+}
+
+.pane .button:hover {
+    -fx-background-color: #381211; /* Color más oscuro al pasar el mouse */
+}

@@ -2,40 +2,94 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="751.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_cuotaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_cuotaController">
    <children>
-      <Label layoutX="42.0" layoutY="36.0" prefHeight="37.0" prefWidth="226.0" text="Cuotas">
-         <font>
-            <Font name="Berlin Sans FB" size="33.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tablaCuota" layoutX="278.0" layoutY="89.0" onMouseClicked="#mostrarFila" prefHeight="226.0" prefWidth="455.0">
-        <columns>
-          <TableColumn fx:id="colGrupo" prefWidth="139.0" text="Grupo" />
-          <TableColumn fx:id="colAlumno" prefWidth="195.0" text="Alumno" />
-            <TableColumn fx:id="colCuota" prefWidth="120.0" text="Cantidad de cuotas" />
-        </columns>
-      </TableView>
-      <TextField fx:id="txtBuscar" layoutX="279.0" layoutY="42.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="455.0" promptText="🔍" />
-      <Pane layoutX="85.0" layoutY="326.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
-         <children>
-            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
-            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
-            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
-            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
-            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
-         </children>
-      </Pane>
-      <ComboBox fx:id="cmbCurso" disable="true" layoutX="42.0" layoutY="147.0" prefHeight="37.0" prefWidth="189.0" promptText="Seleccione Curso" />
-      <TextField fx:id="txtCuota" disable="true" layoutX="42.0" layoutY="202.0" prefHeight="37.0" prefWidth="189.0" promptText="Cantidad de cuotas" />
-      <TextField fx:id="txtAlumno" disable="true" layoutX="42.0" layoutY="89.0" onKeyReleased="#Alumno" prefHeight="37.0" prefWidth="189.0" promptText="Nombre Alumno" />
+      <BorderPane layoutX="229.0" layoutY="131.0" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="140.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="20.0" layoutY="150.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="130.0">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Menu" />
+                        <Button mnemonicParsing="false" onMouseClicked="#alumnos" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Alumno" />
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Profesor" />
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="30.0" prefWidth="140.0" styleClass="btnAsignarCusro" text="Curso" />
+                        <Button mnemonicParsing="false" onMouseClicked="#materia" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Materia" />
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Aula" />
+                        <Button mnemonicParsing="false" onMouseClicked="#pagos" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Pago" />
+                        <Button mnemonicParsing="false" onMouseClicked="#factura" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Factura" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" text="Reportes" />
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="21.0" layoutY="9.0">
+                     <image>
+                        <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tablaCuota" layoutX="136.0" layoutY="83.0" onMouseClicked="#mostrarFila" prefHeight="200.0" prefWidth="200.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="45.0">
+                    <columns>
+                      <TableColumn fx:id="colGrupo" prefWidth="118.0" styleClass="tableCell" text="Grupo" />
+                      <TableColumn fx:id="colAlumno" prefWidth="221.0" styleClass="tableCell" text="Alumno" />
+                        <TableColumn fx:id="colCuota" prefWidth="212.0" styleClass="tableCell" text="Cuotas" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="txtBuscar" layoutX="164.0" layoutY="14.0" promptText="Buscar" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="10.0" />
+                  <HBox layoutX="4.0" layoutY="397.0" prefHeight="54.0" prefWidth="552.0" spacing="45.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                     <children>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="35.0" prefWidth="65.0" styleClass="btnAula" text="Nuevo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="85.0" styleClass="btnAula" text="Modificar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Eliminar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Guardar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" prefHeight="35.0" prefWidth="75.0" styleClass="btnAula" text="Cancelar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="11.0" layoutY="286.0" prefHeight="45.0" prefWidth="538.0" spacing="40.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0">
+                     <children>
+                        <TextField fx:id="txtAlumno" disable="true" promptText="Nombre del Alumno" styleClass="textFiedlApellido" />
+                        <ComboBox fx:id="cmbCurso" disable="true" prefWidth="150.0" promptText="Curso" />
+                        <TextField fx:id="txtCuota" disable="true" promptText="Numero de Cuotas" styleClass="textFiedlApellido" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

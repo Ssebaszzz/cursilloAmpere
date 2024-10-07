@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -30,74 +31,82 @@ public class MenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-    }    
-    
-    @FXML
-    private void alumno(ActionEvent event) {
-        abrirFxml("alumno.fxml","ABM Alumnos");
-        
+
     }
-    public void abrirFxml(String fxml, String titulo){
+
+    public void abrirFxml(String fxml, String titulo) {
         try {
-            FXMLLoader loader=new FXMLLoader(getClass().getResource(fxml));
-            Parent root=loader.load();
-            Stage stage=new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            Stage stage = new Stage();
             stage.setTitle(titulo);
             stage.setScene(new Scene(root));
+
             stage.show();
+
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void aula(ActionEvent event) {
-        abrirFxml("aula.fxml","ABM Aula");
+    private void alumno(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("alumno.fxml", "ABM Alumnos");
+        stage.close();
     }
 
     @FXML
-    private void curso(ActionEvent event) {
-        abrirFxml("curso.fxml","ABM Curso");
+    private void profesor(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("profesores.fxml", "ABM Profesor");
+        stage.close();
     }
 
     @FXML
-    private void profesor(ActionEvent event) {
-        abrirFxml("profesores.fxml","ABM Profesor");
-    }
-
-
-    @FXML
-    private void factura(ActionEvent event) {
-        abrirFxml("factura.fxml","ABM Factura");
+    private void materia(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("materia.fxml", "ABM Materia");
+        stage.close();
     }
 
     @FXML
-    private void materia(ActionEvent event) {
-        abrirFxml("materia.fxml","ABM Materia");
+    private void curso(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("curso.fxml", "ABM Curso");
+        stage.close();
     }
 
     @FXML
-    private void detalle_materia_profesor(ActionEvent event) {
-        abrirFxml("detalle_materia_profesor.fxml","ABM Detalle_materia_profesor");
+    private void aula(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("aula.fxml", "ABM Aula");
+        stage.close();
+    }
+
+    private void notas(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("Notas.fxml", "ABM Notas");
+        stage.close();
+    }
+
+    private void pagos(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("detalle_pago_profesor.fxml", "ABM Pagos🤑");
+        stage.close();
     }
 
     @FXML
-    private void detalle_factura(ActionEvent event) {
-        abrirFxml("detalle_factura.fxml","ABM Detalle_factura");
+    private void factura(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("factura.fxml", "ABM Factura");
+        stage.close();
     }
 
     @FXML
-    private void notas(ActionEvent event) {
-        abrirFxml("notas.fxml","ABM Notas");
-    }
-
-    private void asistencia(ActionEvent event) {
-        abrirFxml("Asistencia.fxml","ABM Asistencia");
-    }
-
-    @FXML
-    private void detalle_pago_profesor(ActionEvent event) {
-        abrirFxml("detalle_pago_profesor.fxml","ABM Detalle_pago_profesor");
+    private void reportes(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("abrirReportes.fxml", "ABM Reportes");
+        stage.close();
     }
 }

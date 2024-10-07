@@ -4,7 +4,6 @@ com\mycompany\cursilloampere\DetalleMateriaProfesorController.class
 com\mycompany\cursilloampere\Detalle_facturaController.class
 com\mycompany\cursilloampere\App.class
 com\mycompany\cursilloampere\modelo\Profesor.class
-com\mycompany\cursilloampere\AgregarFacturaController.class
 com\mycompany\cursilloampere\ProfesorController.class
 com\mycompany\cursilloampere\MenuController.class
 com\mycompany\cursilloampere\DetallePagoProfesorController.class
@@ -25,5 +24,6 @@ com\mycompany\cursilloampere\MateriaController.class
 com\mycompany\cursilloampere\modelo\detalle_materia_profesor.class
 com\mycompany\cursilloampere\FacturaController.class
 com\mycompany\cursilloampere\NotasController.class
+com\mycompany\cursilloampere\AbrirReportesController.class
 com\mycompany\cursilloampere\modelo\Factura.class
 com\mycompany\cursilloampere\modelo\detalle_pago_profesor.class

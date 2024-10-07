@@ -61,7 +61,6 @@ public class DetallePagoProfesorController implements Initializable {
     private TableColumn<detalle_pago_profesor, String> colFecha;
     @FXML
     private TableColumn<detalle_pago_profesor, String> colFechaPago;
-    @FXML
     private TextField txtBuscar;
     @FXML
     private Button btnNuevo;

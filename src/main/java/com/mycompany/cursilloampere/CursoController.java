@@ -9,6 +9,8 @@ import com.mycompany.cursilloampere.modelo.Curso;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -302,147 +304,80 @@ public class CursoController implements Initializable {
         }
         return false;
     }
-    @FXML
-     public void abrirMenu (ActionEvent event) {
+     public void abrirFxml(String fxml, String titulo){
         try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent menuRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/menu.fxml"));
-            Scene menuScene = new Scene(menuRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(menuScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            FXMLLoader loader=new FXMLLoader(getClass().getResource(fxml));
+            Parent root=loader.load();
+            Stage stage=new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(root));
+         
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @FXML
-    public void abrirAlumno (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent alumnoRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/alumno.fxml"));
-            Scene alumnoScene = new Scene(alumnoRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(alumnoScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void alumno(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("alumno.fxml","ABM Alumnos");
+        stage.close();
     }
     @FXML
-    public void abrirMateria (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent materiaRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/materia.fxml"));
-            Scene materiaScene = new Scene(materiaRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(materiaScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void profesor(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("profesores.fxml","ABM Profesor");
+       stage.close();
     }
     @FXML
-    public void abrirAula (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent aulaRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/aula.fxml"));
-            Scene aulaScene = new Scene(aulaRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(aulaScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void materia(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("materia.fxml","ABM Materia");
+       stage.close();
     }
-    public void abrirProfesor (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent profesoresRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/profesores.fxml"));
-            Scene profesoresScene = new Scene(profesoresRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(profesoresScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void curso(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("curso.fxml","ABM Curso");
+       stage.close();
     }
     @FXML
-    public void abrirPago (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent pagoRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/pago.fxml"));
-            Scene pagoScene = new Scene(pagoRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(pagoScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void aula(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("aula.fxml","ABM Aula");
+       stage.close();
     }
     @FXML
-    public void abrirrFactura (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent facturaRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/factura.fxml"));
-            Scene facturaScene = new Scene(facturaRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(facturaScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void notas(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("Notas.fxml","ABM Notas");
+       stage.close();
     }
     @FXML
-    public void abrirNotas (ActionEvent event) {
-        try {
-            // Cargar el archivo FXML de la ventana de Alumnos
-            Parent notasRoot = FXMLLoader.load(getClass().getResource("/com/mycompany/cursilloampere/notas.fxml"));
-            Scene notasScene = new Scene(notasRoot);
-
-            // Obtener el Stage actual a partir del evento
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            // Cambiar la escena del Stage
-            window.setScene(notasScene);
-            window.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void pagos(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("detalle_pago_profesor.fxml","ABM Pagos🤑");
+       stage.close();
     }
+    @FXML
+    private void factura(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("factura.fxml","ABM Factura");
+        stage.close();
+    }
+
+    @FXML
+    private void reportes(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("abrirReportes.fxml","ABM Reportes");
+        stage.close();
+    }
+
+    @FXML
+    private void menu(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("menu.fxml","ABM Menu");
+        stage.close();
+    }
+
 }

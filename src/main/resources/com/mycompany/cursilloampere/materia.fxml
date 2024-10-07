@@ -13,33 +13,74 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.MateriaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.MateriaController">
    <children>
       <BorderPane layoutX="156.0" layoutY="39.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <AnchorPane prefHeight="400.0" prefWidth="140.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
                <children>
-                  <VBox layoutX="14.0" layoutY="130.0" prefHeight="265.0" prefWidth="140.0" spacing="8.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0">
+                  <VBox layoutX="2.0" layoutY="148.0" prefHeight="347.0" prefWidth="136.0" spacing="8.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#abrirMenu" prefWidth="140.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Menu" />
-                        <Button fx:id="btnAlumno" mnemonicParsing="false" onAction="#abrirAlumno" prefWidth="140.0" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Alumno" />
-                        <Button mnemonicParsing="false" onAction="#abrirProfesor" prefWidth="140.0" styleClass="btnProfes" stylesheets="@Menu.css" text="Profesor" />
-                        <Button mnemonicParsing="false" onAction="#abrirAula" prefWidth="140.0" styleClass="btnAula" stylesheets="@Menu.css" text="Aula" />
-                        <Button mnemonicParsing="false" onAction="#abrirCurso" prefWidth="140.0" styleClass="btnCurso" stylesheets="@Menu.css" text="Curso" />
-                        <Button mnemonicParsing="false" onAction="#abrirCurso" prefWidth="140.0" styleClass="btnPago" stylesheets="@Menu.css" text="Pago" />
-                        <Button mnemonicParsing="false" onAction="#abrirrFactura" prefWidth="140.0" styleClass="btnFactura" stylesheets="@Menu.css" text="Factura" />
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="30.0" prefWidth="140.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Menu" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Alumno" />
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="30.0" prefWidth="140.0" styleClass="btnProfes" stylesheets="@Menu.css" text="Profesor" />
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="30.0" prefWidth="140.0" styleClass="btnAula" stylesheets="@Menu.css" text="Aula" />
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="30.0" prefWidth="140.0" styleClass="btnCurso" stylesheets="@Menu.css" text="Curso" />
+                        <Button mnemonicParsing="false" onMouseClicked="#pagos" prefHeight="30.0" prefWidth="140.0" styleClass="btnPago" stylesheets="@Menu.css" text="Pago" />
+                        <Button mnemonicParsing="false" onMouseClicked="#factura" prefHeight="30.0" prefWidth="140.0" styleClass="btnFactura" stylesheets="@Menu.css" text="Factura" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="30.0" prefWidth="140.0" styleClass="btnFactura" stylesheets="@Menu.css" text="Reportes" />
                      </children>
                   </VBox>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="20.0">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="20.0" layoutY="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <image>
                         <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="33.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMEPRE">
+                  <Text layoutX="20.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMEPRE">
                      <font>
-                        <Font name="Space Ranger" size="18.0" />
+                        <Font name="Space Ranger" size="24.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="13.0" layoutY="189.0">
+                     <image>
+                        <Image url="@../../../imagenes/alumno.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="264.0">
+                     <image>
+                        <Image url="@../../../imagenes/taller.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="13.0" layoutY="340.0">
+                     <image>
+                        <Image url="@../../../imagenes/pago.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="379.0">
+                     <image>
+                        <Image url="@../../../imagenes/facturas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="303.0">
+                     <image>
+                        <Image url="@../../../imagenes/curso.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="13.0" layoutY="150.0">
+                     <image>
+                        <Image url="@../../../imagenes/menu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="15.0" layoutY="226.0">
+                     <image>
+                        <Image url="@../../../imagenes/profesor.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="16.0" layoutY="417.0">
+                     <image>
+                        <Image url="@../../../imagenes/analitica.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </left>
@@ -47,38 +88,38 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="txtBuscar" layoutX="2.0" layoutY="21.0" onKeyReleased="#buscar" promptText="Buscar" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="20.0" />
-                  <TableView fx:id="tablaMateria" layoutX="139.0" layoutY="67.0" prefHeight="177.0" prefWidth="456.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="50.0">
+                  <TableView fx:id="tablaMateria" layoutX="139.0" layoutY="67.0" onMouseClicked="#mostrarFila" prefHeight="252.0" prefWidth="506.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="50.0">
                     <columns>
                       <TableColumn fx:id="colid" prefWidth="75.0" styleClass="tableCell" text="Id" />
-                      <TableColumn fx:id="colMateria" prefWidth="422.0" styleClass="tableCell" text="Materia" />
+                      <TableColumn fx:id="colMateria" prefWidth="430.0" styleClass="tableCell" text="Materia" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtNombre" disable="true" layoutX="14.0" layoutY="241.0" promptText="Materia" styleClass="txtFiedlNombre" stylesheets="@Menu.css" />
-                  <HBox layoutX="10.0" layoutY="307.0" prefHeight="39.0" prefWidth="440.0" spacing="20.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="10.0">
+                  <TextField fx:id="txtNombre" disable="true" layoutX="206.0" layoutY="320.0" promptText="Materia" styleClass="txtFiedlNombre" stylesheets="@Menu.css" />
+                  <HBox layoutX="19.0" layoutY="403.0" prefHeight="39.0" prefWidth="440.0" spacing="20.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="18.0">
                      <children>
-                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" styleClass="btnNuevo" stylesheets="@Menu.css" text="Nuevo">
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="35.0" prefWidth="65.0" styleClass="btnNuevo" stylesheets="@Menu.css" text="Nuevo">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" styleClass="btnModificar" stylesheets="@Menu.css" text="Modificar">
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="85.0" styleClass="btnModificar" stylesheets="@Menu.css" text="Modificar">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" styleClass="btnEliminar" stylesheets="@Menu.css" text="Eliminar">
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="35.0" prefWidth="75.0" styleClass="btnEliminar" stylesheets="@Menu.css" text="Eliminar">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" styleClass="btnGuardar" stylesheets="@Menu.css" text="Guardar">
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="35.0" prefWidth="75.0" styleClass="btnGuardar" stylesheets="@Menu.css" text="Guardar">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
-                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
+                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" prefHeight="35.0" prefWidth="75.0" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
                      </children>
                   </HBox>
-                  <TextField fx:id="txtId" disable="true" layoutX="180.0" layoutY="241.0" prefHeight="25.0" prefWidth="57.0" promptText="Id" styleClass="txtFieldId" stylesheets="@Menu.css" />
+                  <TextField fx:id="txtId" disable="true" layoutX="76.0" layoutY="320.0" prefHeight="25.0" prefWidth="57.0" promptText="Id" styleClass="txtFieldId" stylesheets="@Menu.css" />
                </children>
             </AnchorPane>
          </center>

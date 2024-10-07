@@ -16,6 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,7 +54,6 @@ public class DetalleMateriaProfesorController implements Initializable {
 
     @FXML
     private TableColumn<detalle_materia_profesor, String> colGrupo;
-    @FXML
     private TextField txtBuscar;
     @FXML
     private Button btnNuevo;
@@ -450,5 +451,80 @@ public class DetalleMateriaProfesorController implements Initializable {
             mostrarAlerta(ERROR, "El sistema comunica:", "Formato de hora no válido. Debe ser HH:mm:ss.");
             return true;
         }
+    }
+
+    public void abrirFxml(String fxml, String titulo){
+        try {
+            FXMLLoader loader=new FXMLLoader(getClass().getResource(fxml));
+            Parent root=loader.load();
+            Stage stage=new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(root));
+         
+            stage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    private void alumno(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("alumno.fxml","ABM Alumnos");
+        stage.close();
+    }
+    @FXML
+    private void profesor(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("profesores.fxml","ABM Profesor");
+       stage.close();
+    }
+    @FXML
+    private void materia(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("materia.fxml","ABM Materia");
+       stage.close();
+    }
+    @FXML
+    private void curso(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("curso.fxml","ABM Curso");
+       stage.close();
+    }
+    @FXML
+    private void aula(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("aula.fxml","ABM Aula");
+       stage.close();
+    }
+    @FXML
+    private void notas(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("Notas.fxml","ABM Notas");
+       stage.close();
+    }
+    private void pagos(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       abrirFxml("detalle_pago_profesor.fxml","ABM Pagos🤑");
+       stage.close();
+    }
+    private void factura(MouseEvent event) {
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("factura.fxml","ABM Factura");
+        stage.close();
+    }
+
+    @FXML
+    private void reportes(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("reportes.fxml","ABM Reportes");
+        stage.close();
+    }
+
+    @FXML
+    private void menu(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("menu.fxml","ABM Menu");
+        stage.close();
     }
 }
