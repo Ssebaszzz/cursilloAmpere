@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.NotasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.NotasController">
    <children>
       <BorderPane layoutX="-7.0" prefHeight="600.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -151,7 +151,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnModificar" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="85.0" styleClass="btnModificar" stylesheets="@Menu.css" text="Modificiar">
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="85.0" styleClass="btnModificar" stylesheets="@Menu.css" text="Modificar">
                            <font>
                               <Font size="14.0" />
                            </font>

@@ -53,17 +53,27 @@ public class reportes extends conexion {
             // Ruta al archivo .jasper (compilado)
             String reportPath = getClass().getResource(ubicacion).getPath();
 
-            // Nombre del archivo PDF
-            String nombrePdf = "Factura" + nroFactura + ".pdf";
+            // Obtener el directorio "Documentos" del usuario
+            String userHome = System.getProperty("user.home");
+            String documentsPath = userHome + "\\Documents"; // En Windows
 
-            // Ruta de la carpeta y el archivo PDF
-            String rutaPdf = "ReporteFacturas/" + nombrePdf;
+            // Subcarpeta dentro de "Documentos"
+            String subCarpeta = "ReporteFacturas";
 
-            // Crear directorio "ReporteFacturas" si no existe
-            File directorio = new File("ReporteFacturas");
-            if (!directorio.exists()) {
-                directorio.mkdirs(); // Crea el directorio si no existe
+            // Crear la ruta completa de la subcarpeta
+            String rutaSubCarpeta = documentsPath + "\\" + subCarpeta;
+
+            // Crear la subcarpeta si no existe
+            File carpeta = new File(rutaSubCarpeta);
+            if (!carpeta.exists()) {
+                carpeta.mkdirs(); // Crea la subcarpeta si no existe
             }
+            String nombrePdf = "Factura" + nroFactura + ".pdf";
+            // Nombre del archivo PDF
+
+            // Crear la ruta completa del archivo PDF dentro de la subcarpeta
+            String rutaPdf = rutaSubCarpeta + "\\" + nombrePdf;
+            
 
             // Parámetros del informe
             Map<String, Object> parameters = new HashMap<>();
@@ -153,19 +163,29 @@ public class reportes extends conexion {
             // Ruta al archivo .jasper (compilado)
             String reportPath = getClass().getResource(ubicacion).getPath();
 
+            // Obtener el directorio "Documentos" del usuario
+            String userHome = System.getProperty("user.home");
+            String documentsPath = userHome + "\\Documents"; // En Windows
+
+            // Subcarpeta dentro de "Documentos"
+            String subCarpeta = "ReporteNotas";
+
+            // Crear la ruta completa de la subcarpeta
+            String rutaSubCarpeta = documentsPath + "\\" + subCarpeta;
+
+            // Crear la subcarpeta si no existe
+            File carpeta = new File(rutaSubCarpeta);
+            if (!carpeta.exists()) {
+                carpeta.mkdirs(); // Crea la subcarpeta si no existe
+            }
+
             // Nombre del archivo PDF
             String nombrePdf = "Reporte de Notas" + ".pdf";
 
-            // Ruta de la carpeta y el archivo PDF
-            String rutaPdf = "ReporteNotas/" + nombrePdf;
+            // Crear la ruta completa del archivo PDF dentro de la subcarpeta
+            String rutaPdf = rutaSubCarpeta + "\\" + nombrePdf;
 
-            // Crear directorio "ReporteNotas" si no existe
-            File directorio = new File("ReporteNotas");
-            if (!directorio.exists()) {
-                directorio.mkdirs(); // Crea el directorio si no existe
-            }
-
-            // Parámetros del informe (puedes agregar más si es necesario)
+            // Parámetros del informe
             Map<String, Object> parameters = new HashMap<>();
 
             // Llenar el informe

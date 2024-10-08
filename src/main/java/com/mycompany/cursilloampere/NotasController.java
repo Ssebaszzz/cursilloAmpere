@@ -56,6 +56,7 @@ public class NotasController implements Initializable {
     private TextField txtBuscar;
     @FXML
     private Button btnNuevo;
+    @FXML
     private Button btnMod;
     @FXML
     private Button btnEliminar;
@@ -97,8 +98,6 @@ public class NotasController implements Initializable {
     private TableColumn<Notas, Integer> colId;
     @FXML
     private TextField txtId;
-    @FXML
-    private Button btnModificar;
 
     /**
      * Initializes the controller class.
