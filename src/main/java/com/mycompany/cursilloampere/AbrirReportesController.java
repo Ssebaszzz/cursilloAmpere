@@ -22,8 +22,6 @@ public class AbrirReportesController implements Initializable {
     @FXML
     private Button btnReporteClases;
     @FXML
-    private Button btnReporteCuota;
-    @FXML
     private Button btnReporteNotas;
     reportes r = new reportes();
 
@@ -53,17 +51,18 @@ public class AbrirReportesController implements Initializable {
         String Titulo ="Lista de cursos";
         r.generarClases(Ubicacion, Titulo);
     }
-
-    @FXML
-    private void generarReporteCuota(ActionEvent event) {
-        
-    }
-
     @FXML
     private void generarReporteNotas(ActionEvent event) {
         String Ubicacion = "/reportes/Notas.jasper";
         String Titulo ="Lista de Notas";
         r.generarNotas(Ubicacion, Titulo);
+    }
+
+    @FXML
+    private void volver(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("menu.fxml", "ABM Menu");
+        stage.close();
     }
 
     
