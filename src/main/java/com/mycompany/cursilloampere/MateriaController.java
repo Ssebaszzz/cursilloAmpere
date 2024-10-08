@@ -48,8 +48,6 @@ public class MateriaController implements Initializable {
     @FXML
     private TableView tablaMateria;
     @FXML
-    private TableColumn colid;
-    @FXML
     private TableColumn colMateria;
     @FXML
     private TextField txtBuscar;
@@ -68,6 +66,8 @@ public class MateriaController implements Initializable {
     ObservableList<Materia> registrosFiltrados;
     Materia ma = new Materia();
     boolean modificar = false;
+    @FXML
+    private TableColumn colid;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -257,6 +257,7 @@ public class MateriaController implements Initializable {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @FXML
     private void alumno(MouseEvent event) {
          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         abrirFxml("alumno.fxml","ABM Alumnos");

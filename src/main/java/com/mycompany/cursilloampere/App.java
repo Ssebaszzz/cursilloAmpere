@@ -6,13 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import javafx.scene.control.Alert;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
@@ -21,9 +17,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         conexion c = new conexion();
         if (c.getCon() != null) {
-            scene = new Scene(loadFXML("menu"), 640, 480);
+            scene = new Scene(loadFXML("LOGIN"), 700, 550);
             stage.setScene(scene);
-            stage.setTitle("Menú Principal");
+            stage.setTitle("Pagina de ingreso");
             stage.show();
         }
         else{

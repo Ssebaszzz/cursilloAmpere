@@ -2,43 +2,148 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="782.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_facturaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.Detalle_facturaController">
    <children>
-      <Label layoutX="42.0" layoutY="36.0" prefHeight="37.0" prefWidth="226.0" text="Detalle_factura">
-         <font>
-            <Font name="Berlin Sans FB" size="33.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tablaFactura" layoutX="282.0" layoutY="85.0" onMouseClicked="#mostrarFila" prefHeight="168.0" prefWidth="481.0">
-        <columns>
-          <TableColumn fx:id="colGrupo" prefWidth="63.0" text="Grupo" />
-          <TableColumn fx:id="colAlumno" prefWidth="149.0" text="Alumno" />
-            <TableColumn fx:id="colFactura" prefWidth="76.0" text="Nro Factura" />
-            <TableColumn fx:id="colMonto" prefWidth="93.0" text="Monto" />
-            <TableColumn fx:id="colCuota" prefWidth="113.0" text="Cuota" />
-        </columns>
-      </TableView>
-      <TextField fx:id="txtBuscar" layoutX="279.0" layoutY="42.0" onKeyReleased="#buscar" prefHeight="25.0" prefWidth="481.0" promptText="🔍" />
-      <Pane layoutX="100.0" layoutY="269.0" prefHeight="63.0" prefWidth="582.0" style="-fx-border-color: black;">
-         <children>
-            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="37.0" prefWidth="88.0" text="Nuevo" />
-            <Button fx:id="btnMod" disable="true" layoutX="130.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" prefHeight="37.0" prefWidth="88.0" text="Modificar" />
-            <Button fx:id="btnEliminar" disable="true" layoutX="247.0" layoutY="13.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="37.0" prefWidth="88.0" text="Eliminar" />
-            <Button fx:id="btnGuardar" disable="true" layoutX="358.0" layoutY="13.0" mnemonicParsing="false" onAction="#guardar" prefHeight="37.0" prefWidth="88.0" text="Guardar" />
-            <Button fx:id="btnCancelar" disable="true" layoutX="467.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="88.0" text="Cancelar" />
-         </children>
-      </Pane>
-      <ComboBox fx:id="cmbFactura" disable="true" layoutX="42.0" layoutY="101.0" prefHeight="25.0" prefWidth="189.0" promptText="Numero de factura" />
-      <ComboBox fx:id="cmbCurso" disable="true" layoutX="42.0" layoutY="132.0" prefHeight="25.0" prefWidth="189.0" promptText="Seleccione Curso" />
-      <TextField fx:id="txtPago" disable="true" layoutX="42.0" layoutY="169.0" prefHeight="37.0" prefWidth="189.0" promptText="Monto del pago" />
-      <TextField fx:id="txtCuota" disable="true" layoutX="42.0" layoutY="212.0" prefHeight="37.0" prefWidth="189.0" promptText="Numero de cuota" />
+      <BorderPane layoutX="265.0" layoutY="51.0" prefHeight="374.0" prefWidth="782.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="200.0" prefWidth="160.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="4.0" layoutY="160.0" prefHeight="405.0" prefWidth="152.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Menu" />
+                        <Button mnemonicParsing="false" onMouseClicked="#alumno" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Alumnos" />
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Profesores" />
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Cursos" />
+                        <Button mnemonicParsing="false" onMouseClicked="#materia" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Materias" />
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Aulas" />
+                        <Button mnemonicParsing="false" onMouseClicked="#pagos" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Pagos" />
+                        <Button mnemonicParsing="false" onMouseClicked="#factura" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Factura" />
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Reportes" />
+                     </children>
+                  </VBox>
+                  <ImageView layoutX="19.0" layoutY="161.0">
+                     <image>
+                        <Image url="@../../../imagenes/menu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="16.0" layoutY="207.0">
+                     <image>
+                        <Image url="@../../../imagenes/alumno.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="19.0" layoutY="297.0">
+                     <image>
+                        <Image url="@../../../imagenes/curso.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="23.0" layoutY="524.0">
+                     <image>
+                        <Image url="@../../../imagenes/analitica.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="15.0" layoutY="252.0">
+                     <image>
+                        <Image url="@../../../imagenes/profesor%20-%20copia.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="19.0" layoutY="432.0">
+                     <image>
+                        <Image url="@../../../imagenes/pago.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="18.0" layoutY="478.0">
+                     <image>
+                        <Image url="@../../../imagenes/facturas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="19.0" layoutY="343.0">
+                     <image>
+                        <Image url="@../../../imagenes/computadora-portatil.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="19.0" layoutY="388.0">
+                     <image>
+                        <Image url="@../../../imagenes/clase.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="30.0" layoutY="12.0">
+                     <image>
+                        <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="30.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMPERE">
+                     <font>
+                        <Font name="Space Ranger" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="625.0" prefWidth="590.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView layoutX="195.0" layoutY="42.0" onMouseClicked="#mostrarFila" prefHeight="275.0" prefWidth="582.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" styleClass="tableCell" text="Grupo" />
+                      <TableColumn prefWidth="149.0" styleClass="tableCell" text="Alumno" />
+                        <TableColumn prefWidth="126.0" styleClass="tableCell" text="Nro Colum" />
+                        <TableColumn prefWidth="130.0" styleClass="tableCell" text="Monto" />
+                        <TableColumn prefWidth="101.0" styleClass="tableCell" text="Cuota" />
+                    </columns>
+                  </TableView>
+                  <TextField layoutX="4.0" layoutY="11.0" onKeyReleased="#buscar" promptText="Buscar" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" />
+                  <HBox layoutX="136.0" layoutY="352.0" prefHeight="57.0" prefWidth="582.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                     <children>
+                        <ComboBox fx:id="cmbFactura" disable="true" prefHeight="29.0" prefWidth="160.0" promptText="Numero Factura" />
+                        <ComboBox fx:id="cmbCurso" disable="true" prefHeight="29.0" prefWidth="105.0" promptText="Curso" />
+                        <TextField fx:id="Pago" disable="true" promptText="Monto del Pago" styleClass="textFiedlApellido" />
+                        <TextField fx:id="txtCuota" disable="true" promptText="Numero de Cuota" styleClass="textFiedlApellido" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="4.0" layoutY="436.0" prefHeight="55.0" prefWidth="582.0" spacing="30.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                     <children>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="75.0" styleClass="btnAula" text="Nuevo">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="40.0" prefWidth="95.0" styleClass="btnAula" text="Modificar">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="85.0" styleClass="btnAula" text="Eliminar">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="85.0" styleClass="btnAula" text="Guardar">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bntCancelar" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" styleClass="btnAula" text="Cancelar">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
    </children>
 </AnchorPane>

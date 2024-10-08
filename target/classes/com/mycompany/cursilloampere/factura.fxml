@@ -9,19 +9,22 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.FacturaController">
+<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.FacturaController">
    <children>
       <BorderPane layoutX="195.0" layoutY="157.0" prefHeight="539.0" prefWidth="856.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tablaFactura" layoutX="266.0" layoutY="68.0" onMouseClicked="#mostrarFila" prefHeight="336.0" prefWidth="712.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="554.0" AnchorPane.topAnchor="50.0">
+                  <TableView fx:id="tablaFactura" layoutX="266.0" layoutY="68.0" onMouseClicked="#mostrarFila" prefHeight="336.0" prefWidth="547.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="50.0">
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="75.0" styleClass="tableCell" text="Id" />
                         <TableColumn fx:id="colFecha" prefWidth="124.0" styleClass="tableCell" text="Fecha" />
@@ -30,82 +33,85 @@
                         <TableColumn fx:id="colRuc" prefWidth="149.0" styleClass="tableCell" text="Ruc" />
                      </columns>
                   </TableView>
-                  <HBox layoutX="4.0" layoutY="398.0" prefHeight="62.0" prefWidth="562.0" spacing="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="554.0">
+                  <HBox layoutX="4.0" layoutY="398.0" prefHeight="62.0" prefWidth="525.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="591.0">
                      <children>
                         <TextField fx:id="txtId" disable="true" prefHeight="37.0" prefWidth="37.0" promptText="Id" styleClass="txtFiedlNombre" stylesheets="@Menu.css" />
                         <TextField fx:id="txtAlumno" disable="true" onKeyReleased="#Alumno" prefHeight="37.0" prefWidth="193.0" promptText="Alumno" styleClass="textFiedlApellido" stylesheets="@Menu.css" />
-                        <DatePicker fx:id="txtFecha" disable="true" prefHeight="37.0" prefWidth="190.0" promptText="Seleccione la fecha" />
-                        <Button fx:id="btnAgregar" disable="true" mnemonicParsing="false" onAction="#Agregar" prefHeight="43.0" prefWidth="104.0" styleClass="btnAula" stylesheets="@Menu.css" text="Agregar">
+                        <DatePicker fx:id="txtFecha" disable="true" maxHeight="42.0" prefHeight="50.0" prefWidth="178.0" promptText="Seleccione la fecha" />
+                        <Button fx:id="btnAgregar" disable="true" mnemonicParsing="false" onAction="#Agregar" prefHeight="40.0" prefWidth="104.0" styleClass="btnAula" stylesheets="@Menu.css" text="Agregar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <TextField layoutX="77.0" layoutY="14.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" />
-                  <HBox layoutX="268.0" layoutY="505.0" prefHeight="64.0" prefWidth="609.0" spacing="30.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="243.0">
+                  <TextField layoutX="77.0" layoutY="14.0" prefHeight="25.0" prefWidth="547.0" promptText="Buscar Alumno" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="569.0" />
+                  <HBox layoutX="8.0" layoutY="482.0" prefHeight="49.0" prefWidth="564.0" spacing="30.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="548.0">
                      <children>
-                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" styleClass="btnCurso" stylesheets="@Menu.css" text="Nuevo">
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="73.0" styleClass="btnCurso" stylesheets="@Menu.css" text="Nuevo">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" styleClass="btnCancelar" stylesheets="@Menu.css" text="Modificar">
+                        <Button fx:id="btnMod" disable="true" mnemonicParsing="false" onAction="#modificar" prefHeight="40.0" styleClass="btnCancelar" stylesheets="@Menu.css" text="Modificar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Eliminar">
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" styleClass="btnAsignarCusro" stylesheets="@Menu.css" text="Eliminar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" styleClass="btnAula" stylesheets="@Menu.css" text="Guardar">
+                        <Button fx:id="btnGuardar" disable="true" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" styleClass="btnAula" stylesheets="@Menu.css" text="Guardar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" styleClass="btnAula" stylesheets="@Menu.css" text="Cancelar" wrapText="true">
+                        <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" styleClass="btnAula" stylesheets="@Menu.css" text="Cancelar" wrapText="true">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="tablaFactura2" layoutX="572.0" layoutY="49.0" onMouseClicked="#mostrarFila" prefHeight="236.0" prefWidth="543.0" styleClass="tableView" stylesheets="@Menu.css">
+                  <TableView fx:id="tablaFactura2" layoutX="573.0" layoutY="50.0" onMouseClicked="#mostrarFila" prefHeight="336.0" prefWidth="530.0" styleClass="tableView" stylesheets="@Menu.css">
                      <columns>
-                        <TableColumn fx:id="colGrupo" prefWidth="92.0" styleClass="tableCell" text="Grupo" />
-                        <TableColumn fx:id="colNroCuotas" prefWidth="255.0" styleClass="tableCell" text="Numero de cuotas a pagar" />
-                        <TableColumn fx:id="colTotal" prefWidth="194.0" styleClass="tableCell" text="Total" />
+                        <TableColumn fx:id="colGrupo" prefWidth="120.0" styleClass="tableCell" text="Grupo" />
+                        <TableColumn fx:id="colNroCuotas" prefWidth="203.0" styleClass="tableCell" text="Numero de cuotas a pagar" />
+                        <TableColumn fx:id="colTotal" prefWidth="206.0" styleClass="tableCell" text="Total" />
                      </columns>
                   </TableView>
-                  <HBox layoutX="577.0" layoutY="337.0" prefHeight="49.0" prefWidth="538.0" spacing="10.0">
+                  <HBox layoutX="613.0" layoutY="482.0" prefHeight="49.0" prefWidth="478.0" spacing="10.0">
                      <children>
                         <Button fx:id="btnNuevo2" disable="true" mnemonicParsing="false" onAction="#Agregaralatabladetalle" styleClass="btnCancelar" stylesheets="@Menu.css" text="Añadir">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
                         <Button fx:id="btnEliminar2" disable="true" mnemonicParsing="false" onAction="#eliminar2" styleClass="btnCancelar" stylesheets="@Menu.css" text="Eliminar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
                         <Button fx:id="btnCancelar2" disable="true" mnemonicParsing="false" onAction="#cancelar2" styleClass="btnCancelar" stylesheets="@Menu.css" text="Cancelar">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="16.0" />
                            </font>
                         </Button>
-                        <Label disable="true" prefHeight="49.0" prefWidth="77.0" text="Total a pagar: " />
+                        <Label disable="true" prefHeight="49.0" prefWidth="94.0" text="Total a pagar: ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="lblPago" disable="true" prefHeight="49.0" prefWidth="77.0" />
                      </children>
                   </HBox>
-                  <HBox layoutX="573.0" layoutY="289.0" prefHeight="41.0" prefWidth="542.0" spacing="30.0">
+                  <HBox layoutX="575.0" layoutY="398.0" prefHeight="41.0" prefWidth="542.0" spacing="30.0" stylesheets="@Menu.css">
                      <children>
                         <ComboBox fx:id="cmbCurso" disable="true" prefHeight="40.0" prefWidth="120.0" promptText="Curso" />
                         <CheckBox fx:id="chkmatricula" disable="true" mnemonicParsing="false" onAction="#validarMatricula" prefHeight="43.0" prefWidth="78.0" text="Matrícula" />
-                        <TextField fx:id="txtCuota" disable="true" onKeyReleased="#pagoMensual" prefHeight="37.0" prefWidth="139.0" promptText="Cuotas por pagar" />
-                        <TextField fx:id="txtPago" disable="true" prefHeight="37.0" prefWidth="140.0" promptText="Monto del pago" />
+                        <TextField fx:id="txtCuota" disable="true" onAction="#pagoMensual" prefHeight="37.0" prefWidth="139.0" promptText="Cuotas por pagar" styleClass="textFiedlApellido" />
+                        <TextField fx:id="txtPago" disable="true" prefHeight="37.0" prefWidth="140.0" promptText="Monto del pago" styleClass="textFiedlApellido" />
                      </children>
                   </HBox>
                </children>
@@ -114,9 +120,9 @@
          <left>
             <AnchorPane prefHeight="600.0" prefWidth="140.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
                <children>
-                  <VBox layoutY="3.0" spacing="10.0" AnchorPane.topAnchor="150.0">
+                  <VBox layoutY="161.0" prefHeight="489.0" prefWidth="180.0" spacing="10.0" AnchorPane.topAnchor="161.0">
                      <children>
-                        <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Menu">
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Menu">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -124,43 +130,103 @@
                               <Insets />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#abrirAlumno" prefHeight="38.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Alumno">
+                        <Button mnemonicParsing="false" onMouseClicked="#alumno" prefHeight="38.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Alumno">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Curso">
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Profesores">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#abrirProfesor" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Profesores">
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Curso">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#abrirAula" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Aula">
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Aula">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Pago">
+                        <Button mnemonicParsing="false" onMouseClicked="#pagos" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Pago">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#abrirMateria" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Materia">
+                        <Button mnemonicParsing="false" onMouseClicked="#materia" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Materia">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#abrirNotas" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Notas">
+                        <Button mnemonicParsing="false" onMouseClicked="#notas" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Notas">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="40.0" prefWidth="180.0" styleClass="btnMenu" stylesheets="@Menu.css" text="Reportes">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
                      </children>
                   </VBox>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="40.0" layoutY="6.0">
+                     <image>
+                        <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="40.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMPERE">
+                     <font>
+                        <Font name="Space Ranger" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView layoutX="14.0" layoutY="164.0">
+                     <image>
+                        <Image url="@../../../imagenes/menu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="513.0">
+                     <image>
+                        <Image url="@../../../imagenes/resultado.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="263.0">
+                     <image>
+                        <Image url="@../../../imagenes/usuario-de-pizarra.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="311.0">
+                     <image>
+                        <Image url="@../../../imagenes/clase-de-usuarios.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="364.0">
+                     <image>
+                        <Image url="@../../../imagenes/clase.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="213.0">
+                     <image>
+                        <Image url="@../../../imagenes/alumno.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="412.0">
+                     <image>
+                        <Image url="@../../../imagenes/dinero%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="463.0">
+                     <image>
+                        <Image url="@../../../imagenes/computadora-portatil.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="18.0" layoutY="564.0">
+                     <image>
+                        <Image url="@../../../imagenes/analitica.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </left>

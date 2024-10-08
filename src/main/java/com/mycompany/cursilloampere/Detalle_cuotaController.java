@@ -417,6 +417,7 @@ public class Detalle_cuotaController implements Initializable {
         stage.close();
     }
 
+    @FXML
     private void notas(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         abrirFxml("Notas.fxml", "ABM Notas");

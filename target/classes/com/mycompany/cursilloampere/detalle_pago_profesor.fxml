@@ -6,62 +6,125 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.DetallePagoProfesorController">
    <children>
       <BorderPane layoutX="287.0" layoutY="171.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="140.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="200.0" prefWidth="160.0" styleClass="sidePane" stylesheets="@Menu.css" BorderPane.alignment="CENTER">
                <children>
                   <VBox layoutX="20.0" layoutY="146.0" prefHeight="416.0" prefWidth="132.0" spacing="10.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnMenu" text="Menu">
+                        <Button mnemonicParsing="false" onMouseClicked="#menu" prefHeight="35.0" prefWidth="160.0" styleClass="btnMenu" text="Menu">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnNotas" text="Alumno">
+                        <Button mnemonicParsing="false" onMouseClicked="#alumno" prefHeight="35.0" prefWidth="160.0" styleClass="btnNotas" text="Alumno">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Profesor">
+                        <Button mnemonicParsing="false" onMouseClicked="#profesor" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Profesor">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Curso">
+                        <Button mnemonicParsing="false" onMouseClicked="#curso" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Curso">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Materia">
+                        <Button mnemonicParsing="false" onMouseClicked="#materia" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Materia">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Aula">
+                        <Button mnemonicParsing="false" onMouseClicked="#aula" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Aula">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Notas">
+                        <Button mnemonicParsing="false" onMouseClicked="#notas" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Notas">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="132.0" styleClass="btnAula" text="Factura">
+                        <Button mnemonicParsing="false" onMouseClicked="#factura" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Factura">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#reportes" prefHeight="35.0" prefWidth="160.0" styleClass="btnAula" text="Reportes">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
                      </children>
                   </VBox>
+                  <ImageView layoutX="14.0" layoutY="226.0">
+                     <image>
+                        <Image url="@../../../imagenes/alumno.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="15.0" layoutY="317.0">
+                     <image>
+                        <Image url="@../../../imagenes/clase-de-usuarios.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="15.0" layoutY="362.0">
+                     <image>
+                        <Image url="@../../../imagenes/computadora-portatil.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="15.0" layoutY="180.0">
+                     <image>
+                        <Image url="@../../../imagenes/menu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="14.0" layoutY="273.0">
+                     <image>
+                        <Image url="@../../../imagenes/usuario-de-pizarra.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitWidth="32.0" layoutX="16.0" layoutY="407.0">
+                     <image>
+                        <Image url="@../../../imagenes/taller%20-%20copia.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="16.0" layoutY="452.0">
+                     <image>
+                        <Image url="@../../../imagenes/nota.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="20.0" layoutY="545.0">
+                     <image>
+                        <Image url="@../../../imagenes/analitica.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView layoutX="16.0" layoutY="497.0">
+                     <image>
+                        <Image url="@../../../imagenes/facturas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="30.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../imagenes/logo%20sin%20fondo.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="30.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMPERE">
+                     <font>
+                        <Font name="Space Ranger" size="24.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </left>
@@ -88,7 +151,7 @@
                         <DatePicker fx:id="txtFecha" disable="true" prefWidth="164.0" promptText="Fecha" />
                      </children>
                   </HBox>
-                  <HBox layoutX="101.0" layoutY="471.0" prefHeight="55.0" prefWidth="578.0" spacing="50.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="471.0">
+                  <HBox layoutX="88.0" layoutY="467.0" prefHeight="55.0" prefWidth="583.0" spacing="50.0" stylesheets="@Menu.css" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="467.0">
                      <children>
                         <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="35.0" prefWidth="65.0" styleClass="btnAula" text="Nuevo">
                            <font>

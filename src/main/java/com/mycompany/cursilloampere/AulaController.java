@@ -70,8 +70,9 @@ public class AulaController implements Initializable {
     ObservableList<Aula> listaAula;
     Aula au = new Aula();
     boolean modificar = false;
-    @FXML
     private TextField txtId;
+    @FXML
+    private TextField txtcod;
 
     /**
      * Initializes the controller class.

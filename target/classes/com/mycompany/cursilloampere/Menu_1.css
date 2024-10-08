@@ -35,3 +35,12 @@
 .pane .button:hover {
     -fx-background-color: #381211; /* Color más oscuro al pasar el mouse */
 }
+/* Estilo para el separador vertical */
+/* Estilo para el separador vertical */
+/* Estilo para el separador vertical con línea negra y sombra gris */
+.vertical-separator {
+    -fx-background-color: black;      /* Línea de color negro */
+    -fx-pref-width: 2px;              /* Ancho del separador */
+    -fx-effect: dropshadow(gaussian, rgba(128,128,128,0.7), 10, 0, 0, 0); /* Sombra gris */
+}
+

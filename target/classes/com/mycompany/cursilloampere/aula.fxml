@@ -117,9 +117,9 @@
                   </HBox>
                   <TableView fx:id="tablaAula" layoutX="-13.0" layoutY="55.0" onMouseClicked="#mostrarFila" prefHeight="247.0" prefWidth="542.0" styleClass="tableView" stylesheets="@Menu.css" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="50.0">
                      <columns>
-                        <TableColumn fx:id="colNum" prefWidth="142.0" styleClass="tableCell" text="Numero de Aula" />
-                        <TableColumn fx:id="colSucursal" minWidth="0.0" prefWidth="151.0" styleClass="tableCell" text="Scursal" />
-                        <TableColumn fx:id="colDireccion" prefWidth="382.0" styleClass="tableCell" text="Direccion" />
+                        <TableColumn fx:id="colId" prefWidth="142.0" styleClass="tableCell" text="Numero de Aula" />
+                        <TableColumn fx:id="colSucursal" minWidth="0.0" prefWidth="210.0" styleClass="tableCell" text="Scursal" />
+                        <TableColumn fx:id="colDireccion" prefWidth="189.0" styleClass="tableCell" text="Direccion" />
                      </columns>
                   </TableView>
                </children>
