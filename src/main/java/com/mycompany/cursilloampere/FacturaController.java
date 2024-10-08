@@ -271,7 +271,7 @@ public class FacturaController implements Initializable {
                     alerta1.setContentText("Desea imprimir factura?");
                     Optional<ButtonType> opcion = alerta1.showAndWait();
                     if (opcion.get() == ButtonType.OK) {
-                        int nfactura=Integer.parseInt(txtId.getText());
+                        int nfactura = Integer.parseInt(txtId.getText());
                         String Ubicacion = "/reportes/factura.jasper";
                         String Titulo = "Factura N~" + nfactura;
                         imprimir(Ubicacion, Titulo, nfactura, pago);
@@ -322,31 +322,32 @@ public class FacturaController implements Initializable {
 
     @FXML
     private void Agregaralatabladetalle(ActionEvent event) {
-        try {
-            String curso = cmbCurso.getSelectionModel().getSelectedItem();
-            int idCurso = buscarCurso();
-            int nrocuotas = Integer.parseInt(txtCuota.getText());
-            double total = Double.parseDouble(txtPago.getText().replace(",", "."));
-            int IdFactura = Integer.parseInt(txtId.getText());
-            System.out.println("Curso: " + curso + "idCurso" + idCurso + "Cuotas" + nrocuotas + "total" + total + "Factura" + IdFactura);
-            detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, curso);
-            listaDetalleFactura.add(dtf);
-            tablaFactura.refresh();
-            mostrarDatos2();
-            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "El detalle de factura se ha agregado correctamente.");
-            limpiarCampos();
-            if (f.matriculado(buscarAlumno())) {
-                Agregar(event);
+        if (validarCuotas(buscarAlumno(),buscarCurso(), event)) {
+            try {
+                String curso = cmbCurso.getSelectionModel().getSelectedItem();
+                int idCurso = buscarCurso();
+                int nrocuotas = Integer.parseInt(txtCuota.getText());
+                double total = Double.parseDouble(txtPago.getText().replace(",", "."));
+                int IdFactura = Integer.parseInt(txtId.getText());
+                System.out.println("Curso: " + curso + "idCurso" + idCurso + "Cuotas" + nrocuotas + "total" + total + "Factura" + IdFactura);
+                detalle_factura dtf = new detalle_factura(IdFactura, idCurso, total, nrocuotas, curso);
+                listaDetalleFactura.add(dtf);
+                tablaFactura.refresh();
+                mostrarDatos2();
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "El detalle de factura se ha agregado correctamente.");
+                limpiarCampos();
+                if (f.matriculado(buscarAlumno())) {
+                    Agregar(event);
+                }
+                pagototal();
+            } catch (Exception e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar el detalle de factura.");
             }
-            pagototal();
-        } catch (Exception e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al agregar el detalle de factura.");
         }
-
     }
 
     @FXML
-    private void pagoMensual(KeyEvent event) {
+    private void pagoMensual(ActionEvent event) {
         String seleccionado = cmbCurso.getSelectionModel().getSelectedItem();
         listaCurso = FXCollections.observableArrayList(c.consulta());
         listaDetalleCuota = FXCollections.observableArrayList(dc.consulta());
@@ -404,7 +405,7 @@ public class FacturaController implements Initializable {
         return true;
     }
 
-    void validarCuotas(int idA, int idC) {
+   boolean validarCuotas(int idA, int idC, ActionEvent event) {
         int cuotasPagadas = 0;
         boolean alumnoEncontrado = false;
 
@@ -423,7 +424,7 @@ public class FacturaController implements Initializable {
         // Si no se encontró el alumno o el curso, mostrar un mensaje de error
         if (!alumnoEncontrado) {
             mostrarAlerta(ERROR, "El sistema comunica", "No se encontraron cuotas para este alumno y curso.");
-            return; // Salir del método
+            return false; // Salir del método
         }
 
         // Verificar si el valor de txtCuota es un número válido
@@ -432,7 +433,7 @@ public class FacturaController implements Initializable {
             cuotaActual = Integer.parseInt(txtCuota.getText());
         } catch (NumberFormatException e) {
             mostrarAlerta(ERROR, "El sistema comunica", "El valor de la cuota es inválido.");
-            return;
+            return false;
         }
 
         // Calcular las cuotas faltantes
@@ -441,9 +442,15 @@ public class FacturaController implements Initializable {
         // Mostrar mensajes basados en la cantidad de cuotas faltantes
         if (cuotasFaltantes == 0) {
             mostrarAlerta(ERROR, "El sistema comunica", "El alumno ya pagó todas las cuotas de este curso.");
+            return false;
         } else if (cuotasFaltantes < 0) {
             mostrarAlerta(ERROR, "El sistema comunica", "El alumno tiene " + (-cuotasFaltantes) + " cuota(s) por pagar.");
+            pagoMensual(event);
+            txtCuota.setText(String.valueOf(-cuotasFaltantes));
+            return false;
         }
+        
+        return true;
     }
 
     public String concepto() {
@@ -651,6 +658,7 @@ public class FacturaController implements Initializable {
         reportes r = new reportes();
         r.generarFactura(Ubicacion, Titulo, nfactura, Pago);
     }
+
     public void abrirFxml(String fxml, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -665,58 +673,67 @@ public class FacturaController implements Initializable {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void alumno(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        abrirFxml("alumno.fxml","ABM Alumnos");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("alumno.fxml", "ABM Alumnos");
         stage.close();
     }
+
     private void profesor(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("profesores.fxml","ABM Profesor");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("profesores.fxml", "ABM Profesor");
+        stage.close();
     }
+
     private void materia(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("materia.fxml","ABM Materia");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("materia.fxml", "ABM Materia");
+        stage.close();
     }
+
     private void curso(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("curso.fxml","ABM Curso");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("curso.fxml", "ABM Curso");
+        stage.close();
     }
+
     private void aula(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("aula.fxml","ABM Aula");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("aula.fxml", "ABM Aula");
+        stage.close();
     }
+
     private void notas(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("Notas.fxml","ABM Notas");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("Notas.fxml", "ABM Notas");
+        stage.close();
     }
+
     private void pagos(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       abrirFxml("detalle_pago_profesor.fxml","ABM Pagos");
-       stage.close();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("detalle_pago_profesor.fxml", "ABM Pagos");
+        stage.close();
     }
+
     private void factura(MouseEvent event) {
-         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        abrirFxml("factura.fxml","ABM Factura");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        abrirFxml("factura.fxml", "ABM Factura");
         stage.close();
     }
 
     private void reportes(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        abrirFxml("reportes.fxml","ABM Reportes");
+        abrirFxml("reportes.fxml", "ABM Reportes");
         stage.close();
     }
 
     private void menu(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        abrirFxml("menu.fxml","ABM Menu");
+        abrirFxml("menu.fxml", "ABM Menu");
         stage.close();
     }
+
     @FXML
     private void abrirMenu(ActionEvent event) {
     }

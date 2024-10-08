@@ -104,7 +104,7 @@
                      <children>
                         <ComboBox fx:id="cmbCurso" disable="true" prefHeight="40.0" prefWidth="120.0" promptText="Curso" />
                         <CheckBox fx:id="chkmatricula" disable="true" mnemonicParsing="false" onAction="#validarMatricula" prefHeight="43.0" prefWidth="78.0" text="Matrícula" />
-                        <TextField fx:id="txtCuota" disable="true" onKeyReleased="#pagoMensual" prefHeight="37.0" prefWidth="139.0" promptText="Cuotas por pagar" />
+                        <TextField fx:id="txtCuota" disable="true" onAction="#pagoMensual" prefHeight="37.0" prefWidth="139.0" promptText="Cuotas por pagar" />
                         <TextField fx:id="txtPago" disable="true" prefHeight="37.0" prefWidth="140.0" promptText="Monto del pago" />
                      </children>
                   </HBox>

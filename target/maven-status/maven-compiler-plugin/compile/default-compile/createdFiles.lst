@@ -12,6 +12,7 @@ com\mycompany\cursilloampere\clases\sentencias.class
 com\mycompany\cursilloampere\CursoController.class
 com\mycompany\cursilloampere\AlumnoController.class
 com\mycompany\cursilloampere\clases\conexion.class
+com\mycompany\cursilloampere\modelo\Usuario.class
 com\mycompany\cursilloampere\modelo\Alumno.class
 com\mycompany\cursilloampere\Detalle_cuotaController.class
 com\mycompany\cursilloampere\AulaController.class
@@ -23,6 +24,7 @@ com\mycompany\cursilloampere\modelo\Aula.class
 com\mycompany\cursilloampere\MateriaController.class
 com\mycompany\cursilloampere\modelo\detalle_materia_profesor.class
 com\mycompany\cursilloampere\FacturaController.class
+com\mycompany\cursilloampere\LOGINController.class
 com\mycompany\cursilloampere\NotasController.class
 com\mycompany\cursilloampere\AbrirReportesController.class
 com\mycompany\cursilloampere\modelo\Factura.class

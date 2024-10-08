@@ -91,5 +91,87 @@ public class reportes extends conexion {
             Logger.getLogger(reportes.class.getName()).log(Level.SEVERE, "Error al generar el informe: ", ex);
         }
     }
+    public void generarClases(String ubicacion, String titulo) {
+        try {
+            // Ruta al archivo .jasper (compilado)
+            String reportPath = getClass().getResource(ubicacion).getPath();
+
+            // Nombre del archivo PDF
+            String nombrePdf = "Reporte de clase"+ ".pdf";
+            String rutaPdf = "cursospdf/" + nombrePdf;
+
+            // Crear directorio si no existe
+            File directorio = new File("cursospdf");
+            if (!directorio.exists()) {
+                directorio.mkdirs();
+            }
+
+            // Parámetros del informe
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Llenar el informe
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, getCon());
+
+            // Exportar a PDF
+            JasperExportManager.exportReportToPdfFile(jasperPrint, rutaPdf);
+
+            // Verificar si el archivo PDF se ha creado
+            File pdfFile = new File(rutaPdf);
+            if (pdfFile.exists()) {
+                System.out.println("Archivo PDF generado exitosamente: " + pdfFile.getAbsolutePath());
+            } else {
+                System.out.println("Error al generar el archivo PDF.");
+            }
+
+            // Mostrar el informe en una nueva ventana
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
+            viewer.setTitle(titulo);
+            viewer.setVisible(true);
+
+        } catch (JRException ex) {
+            Logger.getLogger(reportes.class.getName()).log(Level.SEVERE, "Error al generar el informe: ", ex);
+        }
+    }
+    public void generarNotas(String ubicacion, String titulo) {
+        try {
+            // Ruta al archivo .jasper (compilado)
+            String reportPath = getClass().getResource(ubicacion).getPath();
+
+            // Nombre del archivo PDF
+            String nombrePdf = "Reporte de Notas"+ ".pdf";
+            String rutaPdf = "Notaspdf/" + nombrePdf;
+
+            // Crear directorio si no existe
+            File directorio = new File("Notaspdf");
+            if (!directorio.exists()) {
+                directorio.mkdirs();
+            }
+
+            // Parámetros del informe
+            Map<String, Object> parameters = new HashMap<>();
+
+            // Llenar el informe
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, parameters, getCon());
+
+            // Exportar a PDF
+            JasperExportManager.exportReportToPdfFile(jasperPrint, rutaPdf);
+
+            // Verificar si el archivo PDF se ha creado
+            File pdfFile = new File(rutaPdf);
+            if (pdfFile.exists()) {
+                System.out.println("Archivo PDF generado exitosamente: " + pdfFile.getAbsolutePath());
+            } else {
+                System.out.println("Error al generar el archivo PDF.");
+            }
+
+            // Mostrar el informe en una nueva ventana
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
+            viewer.setTitle(titulo);
+            viewer.setVisible(true);
+
+        } catch (JRException ex) {
+            Logger.getLogger(reportes.class.getName()).log(Level.SEVERE, "Error al generar el informe: ", ex);
+        }
+    }
 }
 

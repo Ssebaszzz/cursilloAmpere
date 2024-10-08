@@ -8,37 +8,37 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.AbrirReportesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cursilloampere.AbrirReportesController">
    <children>
       <Text layoutX="225.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMPERE">
          <font>
             <Font name="Space Ranger" size="48.0" />
          </font>
       </Text>
-      <Pane layoutX="10.0" layoutY="116.0" onMouseClicked="#clases" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css" AnchorPane.leftAnchor="10.0">
+      <Pane layoutX="10.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css" AnchorPane.leftAnchor="10.0">
          <children>
-            <Button layoutX="63.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#clases" text="Entrar" />
-            <ImageView layoutX="36.0" layoutY="14.0" onMouseClicked="#clases">
+            <Button fx:id="btnReporteClases" layoutX="63.0" layoutY="150.0" mnemonicParsing="false" onAction="#generarReporteClases" text="Generar" />
+            <ImageView layoutX="36.0" layoutY="14.0">
                <image>
                   <Image url="@../../../imagenes/educacion.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="440.0" layoutY="116.0" onMouseClicked="#cuotas" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css" AnchorPane.rightAnchor="10.0">
+      <Pane layoutX="440.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css" AnchorPane.rightAnchor="10.0">
          <children>
-            <Button layoutX="61.0" layoutY="149.0" mnemonicParsing="false" onMouseClicked="#cuotas" text="Entrar" />
-            <ImageView layoutX="39.0" layoutY="13.0" onMouseClicked="#cuotas">
+            <Button fx:id="btnReporteCuota" layoutX="61.0" layoutY="149.0" mnemonicParsing="false" onAction="#generarReporteCuota" text="Generar" />
+            <ImageView layoutX="39.0" layoutY="13.0">
                <image>
                   <Image url="@../../../imagenes/tarifa.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="225.0" layoutY="116.0" onMouseClicked="#facturaReportes" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css">
+      <Pane layoutX="225.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@reportes.css">
          <children>
-            <Button layoutX="63.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#facturaReportes" text="Entrar" />
-            <ImageView layoutX="36.0" layoutY="14.0" onMouseClicked="#facturaReportes">
+            <Button fx:id="btnReporteNotas" layoutX="63.0" layoutY="150.0" mnemonicParsing="false" onAction="#generarReporteNotas" text="Generar" />
+            <ImageView layoutX="36.0" layoutY="14.0">
                <image>
                   <Image url="@../../../imagenes/facturas-de-papel.png" />
                </image>
@@ -50,12 +50,12 @@
             <Font name="Space Ranger" size="36.0" />
          </font>
       </Text>
-      <Text layoutX="250.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Factura">
+      <Text layoutX="250.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notas">
          <font>
             <Font name="Space Ranger" size="36.0" />
          </font>
       </Text>
-      <Text layoutX="35.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clases">
+      <Text layoutX="35.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clases">
          <font>
             <Font name="Space Ranger" size="36.0" />
          </font>
