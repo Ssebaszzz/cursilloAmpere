@@ -55,14 +55,12 @@ public class reportes extends conexion {
 
             // Nombre del archivo PDF
             String nombrePdf = "Factura" + nroFactura + ".pdf";
+            String rutaPdf = "reportespdf/" + nombrePdf;
 
-            // Ruta de la carpeta y el archivo PDF
-            String rutaPdf = "ReporteFacturas/" + nombrePdf;
-
-            // Crear directorio "ReporteFacturas" si no existe
-            File directorio = new File("ReporteFacturas");
+            // Crear directorio si no existe
+            File directorio = new File("reportespdf");
             if (!directorio.exists()) {
-                directorio.mkdirs(); // Crea el directorio si no existe
+                directorio.mkdirs();
             }
 
             // Parámetros del informe
@@ -93,33 +91,20 @@ public class reportes extends conexion {
             Logger.getLogger(reportes.class.getName()).log(Level.SEVERE, "Error al generar el informe: ", ex);
         }
     }
-
     public void generarClases(String ubicacion, String titulo) {
         try {
             // Ruta al archivo .jasper (compilado)
             String reportPath = getClass().getResource(ubicacion).getPath();
 
-            // Obtener el directorio "Documentos" del usuario
-            String userHome = System.getProperty("user.home");
-            String documentsPath = userHome + "\\Documents"; // En Windows
-
-            // Subcarpeta dentro de "Documentos"
-            String subCarpeta = "ReporteClases";
-
-            // Crear la ruta completa de la subcarpeta
-            String rutaSubCarpeta = documentsPath + "\\" + subCarpeta;
-
-            // Crear la subcarpeta si no existe
-            File carpeta = new File(rutaSubCarpeta);
-            if (!carpeta.exists()) {
-                carpeta.mkdirs(); // Crea la subcarpeta si no existe
-            }
-
             // Nombre del archivo PDF
-            String nombrePdf = "Reporte de clase" + ".pdf";
+            String nombrePdf = "Reporte de clase"+ ".pdf";
+            String rutaPdf = "cursospdf/" + nombrePdf;
 
-            // Crear la ruta completa del archivo PDF dentro de la subcarpeta
-            String rutaPdf = rutaSubCarpeta + "\\" + nombrePdf;
+            // Crear directorio si no existe
+            File directorio = new File("cursospdf");
+            if (!directorio.exists()) {
+                directorio.mkdirs();
+            }
 
             // Parámetros del informe
             Map<String, Object> parameters = new HashMap<>();
@@ -147,25 +132,22 @@ public class reportes extends conexion {
             Logger.getLogger(reportes.class.getName()).log(Level.SEVERE, "Error al generar el informe: ", ex);
         }
     }
-
     public void generarNotas(String ubicacion, String titulo) {
         try {
             // Ruta al archivo .jasper (compilado)
             String reportPath = getClass().getResource(ubicacion).getPath();
 
             // Nombre del archivo PDF
-            String nombrePdf = "Reporte de Notas" + ".pdf";
+            String nombrePdf = "Reporte de Notas"+ ".pdf";
+            String rutaPdf = "Notaspdf/" + nombrePdf;
 
-            // Ruta de la carpeta y el archivo PDF
-            String rutaPdf = "ReporteNotas/" + nombrePdf;
-
-            // Crear directorio "ReporteNotas" si no existe
-            File directorio = new File("ReporteNotas");
+            // Crear directorio si no existe
+            File directorio = new File("Notaspdf");
             if (!directorio.exists()) {
-                directorio.mkdirs(); // Crea el directorio si no existe
+                directorio.mkdirs();
             }
 
-            // Parámetros del informe (puedes agregar más si es necesario)
+            // Parámetros del informe
             Map<String, Object> parameters = new HashMap<>();
 
             // Llenar el informe
@@ -192,3 +174,4 @@ public class reportes extends conexion {
         }
     }
 }
+
